@@ -3,7 +3,7 @@
 
 ## Instruções para o teste do projeto
 
-É necessário ter o **node** e o **yarn** instalado em sua máquina. As instruções de instalação desses podem ser encontradas [aqui](https://nodejs.org/pt-br/download/) e [aqui](https://classic.yarnpkg.com/en/docs/install/)
+É necessário ter o **node** e o **yarn** instalado em sua máquina. As instruções de instalação desses programas podem ser encontradas [aqui](https://nodejs.org/pt-br/download/) e [aqui](https://classic.yarnpkg.com/en/docs/install/).
 
 ### Depois do clone
 
