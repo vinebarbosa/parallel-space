@@ -2,10 +2,10 @@ import React from "react"
 
 import './styles.css'
 
-
 import jupterImg from "./../../assets/img/jupter.png"
 
 import { FiMail, FiArrowLeft } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 function Recover(){
     return (
@@ -28,12 +28,8 @@ function Recover(){
             </div>
             <div className='back'>
                 <FiArrowLeft size={24}color='#8257E5'/>
-                <p> <a href='#'> Voltar para login</a></p>
-
-
+                <p> <Link to='/'> Voltar para login</Link></p>
             </div>
-        
-        
         </>
     )
 
