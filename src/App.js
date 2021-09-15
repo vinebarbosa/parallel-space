@@ -1,8 +1,13 @@
 import React from "react";
 
+import './global.css'
+import './assets/fonts/SpaceQuest.ttf'
+
+import Login from "./pages/Login";
+
 function App() {
   return (
-    <h1>Parallel Space JS</h1>
+    <Login />
   );
 }
 
