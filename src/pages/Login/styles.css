@@ -1,10 +1,11 @@
 .titulo {
-    font-family: SpaceQuest;
+    font-family: 'Audiowide';
+    font-style: italic;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 60px;
+    margin-bottom: 70px;
+    font-size: 40px;
 }
-
 .login-container {
     width: 340px;
     height: 475px;
@@ -57,6 +58,7 @@
 .login-container a {
     font-size: 16px;
     color: #8257E5;
+    text-decoration: none;
 }
 
 
@@ -70,6 +72,7 @@
     font-weight: bold;
     margin: 0 auto;
     margin-top: 40px;
+    font-size: 18px;
 }
 
 
