@@ -6,6 +6,8 @@ import { FiMail, FiLock } from 'react-icons/fi'
 
 import fogueteImg from "./../../assets/img/foguete.png"
 
+import { Link } from 'react-router-dom'
+
 function Login() {
     return (
         <>
@@ -25,14 +27,14 @@ function Login() {
                         <input type="password" placeholder="Senha"/>
                     </div>
 
-                    <p><a href="/">Esqueci minha senha</a></p>
+                    <p><Link to="/recover">Esqueci minha senha</Link></p>
 
                     <button type="submit">ENTRAR</button>
                 </div>
 
                 <div className="registre-container">
                     <p>Não tem uma conta?</p>
-                    <p><a href="/">Registre-se</a></p>
+                    <p><Link to="/register">Registre-se</Link></p>
                 </div>
 
                 <img className="foguete" src={fogueteImg} alt="foguete"/>

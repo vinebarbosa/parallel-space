@@ -2,6 +2,7 @@ import React from 'react'
 
 import './styles.css'
 import { FiMail, FiLock, FiUser, FiEye, FiEyeOff, FiArrowLeft } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 function Register(){
     return(
@@ -36,16 +37,10 @@ function Register(){
                 </div>
 
                 <div className='back'>
-                <FiArrowLeft size={24}color='#8257E5'/>
-                <p> <a href='#'> Voltar para login</a></p>
-
+                    <FiArrowLeft size={24}color='#8257E5'/>
+                    <p> <Link to="/"> Voltar para login</Link></p>
                 </div>
             </div>
-
-            
-        
-        
-        
         </>
     )
 }
