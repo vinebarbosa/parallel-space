@@ -1,0 +1,54 @@
+.jupter{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   padding: 70px;
+}
+.recover-container{
+    width: 350px;
+    height: 315px;
+    background: #202024;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.recover-container h1 {
+    font-family: Roboto;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+.recover-container button {
+    width: 270px;
+    height: 50px;
+    border-radius: 10px;
+    color: #FFF;
+    background: #8257E5;
+    border: none;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 40px;
+    font-size: 18px;
+}
+.back{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 20px;
+    width: 350px;
+    margin:0 auto;
+    padding-top: 50px;
+
+}
+.back p{
+    font-size: 16px;
+    margin-left: 15px;
+    padding-top: 3px;
+}
+.back a{
+    color: #8257E5;
+    text-decoration: none;
+}
