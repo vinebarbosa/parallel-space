@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
-@font-face {
-    font-family: "SpaceQuest";
-    src: local("SpaceQuest"),url("./assets/fonts/SpaceQuest.ttf") format("truetype");
-    font-weight: 400;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -28,3 +22,61 @@ button {
     cursor: pointer;
 }
 
+.titulo {
+    font-family: 'Audiowide';
+    font-style: italic;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 70px;
+    font-size: 40px;
+}
+
+.titulo-container {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.centralizar-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button-purple {
+    width: 270px;
+    height: 50px;
+    border-radius: 10px;
+    color: #FFF;
+    background: #8257E5;
+    border: none;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+.back {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    width: 350px;
+    margin:0 auto;
+}
+
+.back div {
+    font-size: 16px;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.back a {
+    color: #8257E5;
+    text-decoration: none;
+}

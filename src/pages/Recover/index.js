@@ -15,7 +15,7 @@ function Recover(){
             </div>
 
             <div className='recover-container'> 
-                <h1 className='titulo'>Recuperar senha</h1> 
+                <h1 className='titulo-container'>Recuperar senha</h1> 
             
                 <div className="centralizar-container" >
                     <div className="input-container">
@@ -23,12 +23,12 @@ function Recover(){
                         <input type="email" placeholder="Digite seu e-mail"/>
                     </div>
                     
-                    <button type="submit">RECUPERAR</button>
+                    <button className="button-purple" type="submit">RECUPERAR</button>
                 </div>
             </div>
             <div className='back'>
                 <FiArrowLeft size={24}color='#8257E5'/>
-                <p> <Link to='/'> Voltar para login</Link></p>
+                <div><Link to='/'> Voltar para login</Link></div>
             </div>
         </>
     )

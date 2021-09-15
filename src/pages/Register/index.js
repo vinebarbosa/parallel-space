@@ -10,12 +10,14 @@ function Register(){
             <h1 className="titulo">Parallel Space JS</h1>
 
             <div className="register-container">
-                <h2>Crie sua conta</h2>
+                <h2 className="titulo-container" >Crie sua conta</h2>
+                
                 <div className="centralizar-container" >
                     <div className="input-container">
                         <FiMail size={24} color="#757575"/>
                         <input type="email" placeholder="Seu e-mail"/>
                     </div>
+                    
                     <div className="input-container">
                         <FiUser  size={24} color="#757575"/>
                         <input type="text" placeholder="Seu nome"/>
@@ -26,20 +28,21 @@ function Register(){
                         <input type="password" placeholder="Sua Senha"/>
                         <FiEye  size={24} color="#757575"/>
                     </div>
+                    
                     <div className="input-container">
                         <FiLock size={24} color="#757575"/>
                         <input type="password" placeholder="Confirme sua Senha"/>
                         <FiEyeOff size={24} color="#757575"/>
                     </div>
 
-                    <button type="submit">CADASTRAR</button>
-                    
+                    <button className="button-purple" type="submit">CADASTRAR</button>
                 </div>
 
-                <div className='back'>
-                    <FiArrowLeft size={24}color='#8257E5'/>
-                    <p> <Link to="/"> Voltar para login</Link></p>
-                </div>
+            </div>
+
+            <div className='back'>
+                <FiArrowLeft size={24}color='#8257E5'/>
+                <div> <Link to="/"> Voltar para login</Link></div>
             </div>
         </>
     )
