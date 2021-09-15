@@ -1,11 +1,4 @@
-.titulo {
-    font-family: 'Audiowide';
-    font-style: italic;
-    text-align: center;
-    margin-top: 60px;
-    margin-bottom: 70px;
-    font-size: 40px;
-}
+
 .register-container {
     width: 340px;
     height: 490px;
@@ -13,20 +6,6 @@
     border-radius: 20px;
     margin: 0 auto;
     padding: 20px;
-}
-
-.register-container h2 {
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-    margin-top: 25px;
-    margin-bottom: 20px;
-}
-
-.centralizar-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
 }
 
 .input-container {
@@ -46,52 +25,4 @@
     color: white;
     height:100%;
     background: transparent;
-}
-
-.register-container p {
-    font-size: 16px;
-    text-align: center;
-    margin-top: 15px;
-    text-decoration: none;
-}
-
-.register-container a {
-    font-size: 16px;
-    color: #8257E5;
-    text-decoration: none;
-}
-
-
-.register-container button {
-    width: 270px;
-    height: 50px;
-    border-radius: 10px;
-    color: #FFF;
-    background: #8257E5;
-    border: none;
-    font-weight: bold;
-    margin: 0 auto;
-    margin-top: 40px;
-    font-size: 18px;
-}
-
-.back{
-    display: flex;
-    flex-direction: row;
-    align-items: center ;
-    justify-content: center;
-    padding-top: 20px;
-    width: 300px;
-    margin:0 auto;
-    padding-top: 60px;
-
-}
-.back p{
-    font-size: 16px;
-    margin-left: 15px;
-    padding-bottom: 15px;
-}
-.back a{
-    color: #8257E5;
-    text-decoration: none;
 }

@@ -14,7 +14,7 @@ function Login() {
             <h1 className="titulo">Parallel Space JS</h1>
             
             <div className="login-container">
-                <h2>Faça seu login</h2>
+                <h2 className="titulo-container">Faça seu login</h2>
 
                 <div className="centralizar-container" >
                     <div className="input-container">
@@ -29,7 +29,7 @@ function Login() {
 
                     <p><Link to="/recover">Esqueci minha senha</Link></p>
 
-                    <button type="submit">ENTRAR</button>
+                    <button className="button-purple" type="submit">ENTRAR</button>
                 </div>
 
                 <div className="registre-container">
