@@ -19,7 +19,7 @@ function Recover(){
             
                 <div className="centralizar-container" >
                     <div className="input-container">
-                        <FiMail className="input-container-img" size={24} color="#757575"/>
+                        <FiMail size={24} color="#757575"/>
                         <input type="email" placeholder="Digite seu e-mail"/>
                     </div>
                     
