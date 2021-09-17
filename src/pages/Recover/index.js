@@ -27,6 +27,7 @@ function Recover() {
           </button>
         </div>
       </div>
+
       <div className="back">
         <FiArrowLeft size={24} color="#8257E5" />
         <div>

@@ -12,7 +12,6 @@ function Login() {
   return (
     <>
       <div className="titulo">
-        {' '}
         <img src={tituloImg} alt="titulo" />
       </div>
 

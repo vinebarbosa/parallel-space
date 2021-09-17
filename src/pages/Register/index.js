@@ -16,9 +16,9 @@ function Register() {
   return (
     <>
       <div className="titulo">
-        {' '}
         <img src={tituloImg} alt="titulo" />
       </div>
+
       <div className="register-container">
         <h2 className="titulo-container">Crie sua conta</h2>
 
