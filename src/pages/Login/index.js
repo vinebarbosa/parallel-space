@@ -5,13 +5,15 @@ import './styles.css'
 import { FiMail, FiLock } from 'react-icons/fi'
 
 import fogueteImg from "./../../assets/img/foguete.svg"
+import tituloImg from "./../../assets/img/titulo.svg"
+
 
 import { Link } from 'react-router-dom'
 
 function Login() {
     return (
         <>
-            <h1 className="titulo">Parallel Space JS</h1>
+            <div className='titulo'> <img src={tituloImg} alt="titulo"/></div>
             
             <div className="login-container">
                 <h2 className="titulo-container">Faça seu login</h2>
