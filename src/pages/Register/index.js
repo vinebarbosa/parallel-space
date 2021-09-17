@@ -3,12 +3,14 @@ import React from 'react'
 import './styles.css'
 import { FiMail, FiLock, FiUser, FiEye, FiEyeOff, FiArrowLeft } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import tituloImg from "./../../assets/img/titulo.svg"
+
+
 
 function Register(){
     return(
         <>
-            <h1 className="titulo">Parallel Space JS</h1>
-
+            <div className='titulo'> <img src={tituloImg} alt="titulo"/></div>
             <div className="register-container">
                 <h2 className="titulo-container" >Crie sua conta</h2>
                 
