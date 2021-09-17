@@ -4,7 +4,7 @@ import './styles.css'
 
 import { FiMail, FiLock } from 'react-icons/fi'
 
-import fogueteImg from "./../../assets/img/foguete.png"
+import fogueteImg from "./../../assets/img/foguete.svg"
 
 import { Link } from 'react-router-dom'
 
