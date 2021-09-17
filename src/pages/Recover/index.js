@@ -2,7 +2,7 @@ import React from "react"
 
 import './styles.css'
 
-import jupterImg from "./../../assets/img/jupter.png"
+import jupterImg from "./../../assets/img/jupter.svg"
 
 import { FiMail, FiArrowLeft } from 'react-icons/fi'
 import { Link } from 'react-router-dom'

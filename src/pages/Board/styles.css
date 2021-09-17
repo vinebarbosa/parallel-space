@@ -1,0 +1,68 @@
+.parte1-div {
+    height: 70vh;
+    width: 100vw;
+}
+
+.parte2-div {
+    height:30vh;
+    width: 100vw;
+    background-color: #292A2D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.parte2-div p {
+    font-size: 18px;
+    color: #a09c9c;
+}
+
+.titulo-pequeno{
+    padding: 20px;
+}
+
+.cometa {
+    position: fixed;
+    right: 10.5vw;
+    top: 30vh;
+}
+
+.sol {
+    position:fixed;
+    left:0;
+    bottom:30vh;
+}
+
+.jupter-img {
+    position:fixed;
+    right:50px;
+    bottom:38vh;
+    
+}
+
+.foguete-img {
+    position: fixed;
+    left: 10vw;
+    top: 15vh;
+}
+
+.buttons-div {
+    display: grid;
+    align-content: center;
+    grid-template-columns: 90px 90px 90px 90px 90px;
+    grid-column-gap: 16px;
+    grid-row-gap: 18px;
+    justify-items: center;
+}
+
+.item {
+    background-color: white;
+    height: 90px;
+    width: 90px;
+    border-radius: 15px;
+    background-color: #292A2D;
+}
+
+.centralizar-vertical {
+    height: 80%;
+    justify-content: center;
+}
