@@ -3,7 +3,7 @@ import React from 'react';
 import './styles.css';
 
 function Pad(props) {
-  if (props.response.tipo === 'obs') {
+  if (props.data.type === 'obs') {
     console.log('OK!');
   }
 

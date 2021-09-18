@@ -3,8 +3,8 @@ import Pad from '../Pad';
 
 import './styles.css';
 
-const response = {
-  tipo: 'obs',
+const data = {
+  type: 'obs',
   category: 'scene',
   sceneName: 'Gameplay 1',
 };
@@ -12,7 +12,21 @@ const response = {
 function Pads() {
   return (
     <div className="pads-container">
-      <Pad response={response} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
+      <Pad data={data} />
     </div>
   );
 }
