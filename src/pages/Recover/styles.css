@@ -1,11 +1,11 @@
-.jupter{
+.jupter {
    display: flex;
    align-items: center;
    justify-content: center;
    width: 100%;
    padding: 70px;
 }
-.recover-container{
+.recover-container {
     width: 350px;
     height: 315px;
     background: #202024;

@@ -1,0 +1,9 @@
+.pads-container {
+  width: 65vw;
+  display: grid;
+  grid-template-columns: 90px 90px 90px 90px 90px;
+  grid-column-gap: 16px;
+  grid-row-gap: 18px;
+  align-content: center;
+  justify-content: center;
+}
