@@ -21,9 +21,11 @@
         "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error",
-      "react-hooks/rules-of-hooks": "error",
+      "prettier/prettier": "warn",
+      "react-hooks/rules-of-hooks": "warn",
       "react-hooks/exhaustive-deps": "warn",
-      "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}]
+      "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
+      "react/destructuring-assignment": [0],
+      "react/prop-types": [0]
     }
 }

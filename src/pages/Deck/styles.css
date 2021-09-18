@@ -1,0 +1,15 @@
+.deck-page-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.image-title-container {
+  width: 30vw;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15vh;
+  padding-bottom: 10vh;
+  align-items: center;
+}
