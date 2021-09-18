@@ -16,7 +16,7 @@
     color: #a09c9c;
 }
 
-.titulo-pequeno {
+.titulo-pequeno{
     padding: 20px;
 }
 
@@ -36,6 +36,7 @@
     position:fixed;
     right:50px;
     bottom:38vh;
+    
 }
 
 .foguete-img {
