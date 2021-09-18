@@ -16,7 +16,7 @@ function getBrowserFullscreenElementProp() {
   throw new Error('fullscreenElement is not supported by this browser');
 }
 
-export default function useFullscreenStatus(elRef) {
+export default function useFullcreen(elRef) {
   const [isFullscreen, setIsFullscreen] = React.useState(
     document[getBrowserFullscreenElementProp()] != null,
   );
