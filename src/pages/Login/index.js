@@ -20,12 +20,12 @@ function Login() {
 
         <div className="centralizar-container">
           <div className="input-container">
-            <FiMail size={24} color="#757575" />
+            <FiMail size={24} color="#757575" className="input-container-img" />
             <input type="email" placeholder="E-mail" />
           </div>
 
           <div className="input-container">
-            <FiLock size={24} color="#757575" />
+            <FiLock size={24} color="#757575" className="input-container-img" />
             <input type="password" placeholder="Senha" />
           </div>
 
