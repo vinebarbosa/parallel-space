@@ -1,15 +1,15 @@
 .jupter {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 100%;
-   padding: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 70px;
 }
 .recover-container {
-    width: 350px;
-    height: 315px;
-    background: #202024;
-    border-radius: 20px;
-    margin: 0 auto;
-    padding: 20px;
+  width: 350px;
+  height: 315px;
+  background: #202024;
+  border-radius: 20px;
+  margin: 0 auto;
+  padding: 20px;
 }

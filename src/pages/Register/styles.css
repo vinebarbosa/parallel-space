@@ -1,28 +1,10 @@
 
 .register-container {
-    width: 340px;
-    height: 490px;
-    background: #202024;
-    border-radius: 20px;
-    margin: 0 auto;
-    padding: 20px;
+  width: 340px;
+  height: 490px;
+  background: #202024;
+  border-radius: 20px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.input-container {
-    width: 270px;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #121214;
-    border-radius: 10px;
-    padding: 0 20px;
-    margin-top: 15px;
-}
-
-.input-container input {
-    border: none;
-    color: white;
-    height:100%;
-    background: transparent;
-}

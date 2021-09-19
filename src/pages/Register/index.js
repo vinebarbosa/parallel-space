@@ -36,13 +36,13 @@ function Register() {
           <div className="input-container">
             <FiLock size={24} color="#757575" />
             <input type="password" placeholder="Sua Senha" />
-            <FiEye size={24} color="#757575" />
+            <FiEye size={18} color="#757575" />
           </div>
 
           <div className="input-container">
             <FiLock size={24} color="#757575" />
             <input type="password" placeholder="Confirme sua Senha" />
-            <FiEyeOff size={24} color="#757575" />
+            <FiEyeOff size={18} color="#757575" />
           </div>
 
           <button className="button-purple" type="submit">
