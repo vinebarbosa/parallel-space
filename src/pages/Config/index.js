@@ -7,7 +7,7 @@ import solImg from '../../assets/img/sol.svg';
 import fogueteImg from '../../assets/img/foguete.svg';
 import jupterImg from '../../assets/img/jupter.svg';
 
-function Board() {
+function Config() {
   return (
     <>
       <div className="parte1-div">
@@ -46,4 +46,4 @@ function Board() {
   );
 }
 
-export default Board;
+export default Config;
