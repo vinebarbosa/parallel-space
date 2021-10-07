@@ -29,10 +29,6 @@ function Login() {
             <input type="password" placeholder="Senha" />
           </div>
 
-          <p>
-            <Link to="/recover">Esqueci minha senha</Link>
-          </p>
-
           <button className="button-purple" type="submit">
             ENTRAR
           </button>

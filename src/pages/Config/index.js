@@ -6,6 +6,7 @@ import cometaImg from '../../assets/img/cometa.svg';
 import solImg from '../../assets/img/sol.svg';
 import fogueteImg from '../../assets/img/foguete.svg';
 import jupterImg from '../../assets/img/jupter.svg';
+import Pads from '../../components/Pads';
 
 function Config() {
   return (
@@ -14,23 +15,7 @@ function Config() {
         <img className="titulo-pequeno" src={tituloPequenoImg} alt="titulo" />
 
         <div className="centralizar-container centralizar-vertical ">
-          <div className="buttons-div">
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-            <div className="item" />
-          </div>
+          <Pads />
         </div>
 
         <img className="cometa" src={cometaImg} alt="cometa" />
