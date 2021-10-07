@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend do projeto",
+  "main": "src/index.js",
+  "repository": "https://github.com/vinebarbosa/parallel-space-js",
+  "author": "Amós Gonçalves e Vinícios Barbosa",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}
