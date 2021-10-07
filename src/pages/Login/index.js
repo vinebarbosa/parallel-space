@@ -28,14 +28,11 @@ function Login() {
             <FiLock size={24} color="#757575" className="input-container-img" />
             <input type="password" placeholder="Senha" />
           </div>
-
-          <p>
-            <Link to="/recover">Esqueci minha senha</Link>
-          </p>
-
-          <button className="button-purple" type="submit">
-            ENTRAR
-          </button>
+          <Link to="/config">
+            <button className="button-purple" type="submit">
+              ENTRAR
+            </button>
+          </Link>
         </div>
 
         <div className="registre-container">

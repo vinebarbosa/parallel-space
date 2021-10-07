@@ -3,9 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Recover from './pages/Recover';
-import Board from './pages/Board';
-import Deck from './pages/Deck';
+import Config from './pages/Config';
 
 function Routes() {
   return (
@@ -13,9 +11,7 @@ function Routes() {
       <Switch>
         <Route path="/" exact component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/recover" component={Recover} />
-        <Route path="/config" component={Board} />
-        <Route path="/app" component={Deck} />
+        <Route path="/config" component={Config} />
       </Switch>
     </BrowserRouter>
   );
