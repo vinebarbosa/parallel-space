@@ -3,13 +3,15 @@ const express = require('express')
 const routes = express.Router()
 
 routes.post('/user', (request, response) => {
-  response.json({ mensagem: 'Usuário cadastrado com sucesso!' })
+  response.json({
+    mensagem: 'Usuário cadastrado com sucesso!'
+  })
 })
 
 routes.get('/login', (request, response) => {
   response.json({
     user: 'Vinícios',
-    token: 'jd29u2nd88',
+    token: 'jd29u2nd88'
   })
 })
 
@@ -27,7 +29,7 @@ routes.get('/buttons', (request, response) => {
       scene: null,
       command: 'start',
       path: null,
-      icon: 'https://parallelspacejs.com.br/image/23124',
+      icon: 'https://parallelspacejs.com.br/image/23124'
     },
     {
       id: 1,
@@ -36,8 +38,8 @@ routes.get('/buttons', (request, response) => {
       scene: null,
       command: null,
       path: 'C:/programFiles/chrome/chrome.exe',
-      icon: 'https://parallelspacejs.com.br/image/23124',
-    },
+      icon: 'https://parallelspacejs.com.br/image/23124'
+    }
   ])
 })
 
