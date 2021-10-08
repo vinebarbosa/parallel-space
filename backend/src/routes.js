@@ -7,12 +7,10 @@ routes.post('/user', (request, response) => {
 })
 
 routes.get('/login', (request, response) => {
-  response.json(
-    {
-      user: 'Vinícios',
-      token: 'jd29u2nd88'
-    }
-  )
+  response.json({
+    user: 'Vinícios',
+    token: 'jd29u2nd88',
+  })
 })
 
 routes.put('/button', (request, response) => {
@@ -21,28 +19,26 @@ routes.put('/button', (request, response) => {
 })
 
 routes.get('/buttons', (request, response) => {
-  response.json(
-    [
-      {
-        id: 0,
-        type: 'obs',
-        category: 'stream',
-        scene: null,
-        command: 'start',
-        path: null,
-        icon: 'https://parallelspacejs.com.br/image/23124'
-      },
-      {
-        id: 1,
-        type: 'system',
-        category: 'open-app',
-        scene: null,
-        command: null,
-        path: 'C:/programFiles/chrome/chrome.exe',
-        icon: 'https://parallelspacejs.com.br/image/23124'
-      }
-    ]
-  )
+  response.json([
+    {
+      id: 0,
+      type: 'obs',
+      category: 'stream',
+      scene: null,
+      command: 'start',
+      path: null,
+      icon: 'https://parallelspacejs.com.br/image/23124',
+    },
+    {
+      id: 1,
+      type: 'system',
+      category: 'open-app',
+      scene: null,
+      command: null,
+      path: 'C:/programFiles/chrome/chrome.exe',
+      icon: 'https://parallelspacejs.com.br/image/23124',
+    },
+  ])
 })
 
 routes.get('/image/:id', (request, response) => {
