@@ -8,7 +8,7 @@ routes.post('/user', (request, response) => {
   })
 })
 
-routes.get('/login', (request, response) => {
+routes.get('/user', (request, response) => {
   response.json({
     user: 'Vinícios',
     token: 'jd29u2nd88'
