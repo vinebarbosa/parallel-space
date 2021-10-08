@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar'
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
 export default function App() {
   return (
@@ -8,7 +8,7 @@ export default function App() {
       <Text style={styles.text}>Pedro corno</Text>
       <StatusBar backgroundColor="#FFF" style="dark" />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#121214',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   text: {
-    color: "#FFF",
+    color: '#FFF',
     fontSize: 18
   }
-});
+})
