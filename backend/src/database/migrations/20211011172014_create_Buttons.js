@@ -1,10 +1,10 @@
 exports.up = function (knex) {
   return knex.schema.createTable('buttons', function (table) {
     table.string('id').primary()
-    table.string('type').notNullable()
-    table.string('category').notNullable()
-    table.string('description').notNullable()
-    table.string('position').notNullable()
+    table.string('type')
+    table.string('category')
+    table.string('description')
+    table.integer('position').notNullable()
 
     table.string('user_id').notNullable()
 
