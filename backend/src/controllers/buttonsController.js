@@ -1,13 +1,13 @@
 const connection = require('./../database/connection')
-const crypto = require('crypto')
+const gerarID = require('./../utils/idGenerator')
 
 module.exports = {
-  createAll: async (user) => {
+  createAll: (user) => {
     const buttons = []
 
     for (let index = 0; index < 15; index++) {
       buttons.push({
-        id: crypto.randomBytes(4).toString('HEX'),
+        id: gerarID(4),
         position: index,
         user_id: user.id
       })

@@ -1,12 +1,12 @@
 const connection = require('./../database/connection')
-const crypto = require('crypto')
+const gerarID = require('./../utils/idGenerator')
 const buttonsController = require('./buttonsController')
 
 module.exports = {
   create: async (request, response) => {
     const { name, email, password } = request.body
 
-    const id = crypto.randomBytes(4).toString('HEX')
+    const id = gerarID(4)
 
     const user = {
       id,
@@ -20,8 +20,8 @@ module.exports = {
       .where('email', email)
       .first()
 
+    // Criar o usuário
     if (bdUser === undefined) {
-      // Criar o usuário
       await connection('users').insert(user)
 
       const bdUser = await connection('users')
