@@ -23,19 +23,23 @@ module.exports = {
     return response.json(buttons)
   },
   update: async (request, response) => {
-    const button = request.body
-    const id = request.headers.authorization // id de quem está logado
+    try {
+      const button = request.body
+      const id = request.headers.authorization // id de quem está logado
 
-    const bdButton = await connection('buttons')
-      .select('*')
-      .where('id', button.id)
-      .first()
-    // Se o usuário que está tentando modificar o botão foi quem o criou
-    if (id === bdButton.user_id) {
-      await connection('buttons').where('id', button.id).update(button)
-      return response.sendStatus(204)
-    } else {
-      return response.json({ error: 'Não autorizado!' }).status(401)
+      const bdButton = await connection('buttons')
+        .select('*')
+        .where('id', button.id)
+        .first()
+      // Se o usuário que está tentando modificar o botão foi quem o criou
+      if (id === bdButton.user_id) {
+        await connection('buttons').where('id', button.id).update(button)
+        return response.sendStatus(204)
+      } else {
+        return response.json({ error: 'Não autorizado!' }).status(401)
+      }
+    } catch {
+      return response.sendStatus(400)
     }
   }
 }

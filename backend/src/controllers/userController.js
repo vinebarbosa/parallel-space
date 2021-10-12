@@ -31,7 +31,7 @@ module.exports = {
 
       buttonsController.createAll(bdUser)
 
-      return response.json(user.id)
+      return response.json({ id: user.id })
     } else {
       return response.json({ error: 'Usuário já cadastrado' }).status(400)
     }
