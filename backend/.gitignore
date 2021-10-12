@@ -1,2 +1,3 @@
 node_modules
-temp
+temp/uploads/*
+!temp/uploads/.gitkeep
