@@ -58,14 +58,11 @@ module.exports = {
       const imageId = request.params.id
       const userId = request.headers.authorization
 
+      const image = await connection('icons').where('id', imageId).first()
+
       const bdUser = await connection('users')
         .select('*')
         .where('id', userId)
-        .first()
-
-      const image = await connection('icons')
-        .select('*')
-        .where('id', imageId)
         .first()
 
       const bdButton = await connection('buttons')
@@ -73,9 +70,8 @@ module.exports = {
         .where('id', image.button_id)
         .first()
 
-      if (bdUser.id !== bdButton.user_id) {
-        response.status(401).json({ error: 'Não autorizado' })
-      }
+      if (bdUser === undefined) return response.sendStatus(404)
+      if (bdUser.id !== bdButton.user_id) return response.sendStatus(401)
 
       if (process.env.STORAGE_TYPE === 's3') {
         await s3
@@ -89,6 +85,7 @@ module.exports = {
           path.resolve(__dirname, '..', '..', 'temp', 'uploads', image.key)
         )
       }
+
       await connection('icons').where('id', imageId).delete()
       return response.send()
     } catch (error) {
