@@ -26,8 +26,12 @@ module.exports = {
         .where('id', button_id)
         .first()
 
+      if (bdUser === undefined) {
+        return response.status(401).json({ error: 'Usuário não autorizado' })
+      }
+
       if (bdUser.id !== bdButton.user_id) {
-        response.status(401).json({ error: 'Não autorizado' })
+        return response.status(401).json({ error: 'Usuário não autorizado' })
       }
 
       if (bdUser.id === bdButton.user_id) {
@@ -36,9 +40,9 @@ module.exports = {
         if (url === '') url = `${process.env.APP_URL}/files/${key}`
         const newImage = { id, key, name, url, button_id }
         await connection('icons').insert(newImage)
-        response.send(newImage)
+        return response.send(newImage)
       } else {
-        return response.status(401).json({ error: 'Não autorizado' })
+        return response.status(401).json({ error: 'Usuário não autorizado' })
       }
     } catch {
       return response.sendStatus(400)
@@ -70,8 +74,13 @@ module.exports = {
         .where('id', image.button_id)
         .first()
 
-      if (bdUser === undefined) return response.sendStatus(404)
-      if (bdUser.id !== bdButton.user_id) return response.sendStatus(401)
+      if (bdUser === undefined) {
+        return response.status(401).json({ error: 'Usuário não autorizado' })
+      }
+
+      if (bdUser.id !== bdButton.user_id) {
+        return response.status(401).json({ error: 'Usuário não autorizado' })
+      }
 
       if (process.env.STORAGE_TYPE === 's3') {
         await s3
@@ -87,9 +96,9 @@ module.exports = {
       }
 
       await connection('icons').where('id', imageId).delete()
-      return response.send()
-    } catch (error) {
-      return response.sendStatus(400)
+      return response.sendStatus(204)
+    } catch {
+      return response.status(400).json({ error: 'Requisição inválida' })
     }
   }
 }

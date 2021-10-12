@@ -31,9 +31,9 @@ module.exports = {
 
       buttonsController.createAll(bdUser)
 
-      return response.json({ id: user.id })
+      return response.status(201).json({ id: user.id })
     } else {
-      return response.json({ error: 'Usuário já cadastrado' }).status(400)
+      return response.status(409).json({ error: 'Usuário já cadastrado' })
     }
   },
   get: async (request, response) => {
@@ -45,13 +45,13 @@ module.exports = {
       .first()
 
     if (user === undefined) {
-      return response.json({ error: 'Usuário não cadastrado' }).status(404)
+      return response.status(404).json({ error: 'Usuário não cadastrado' })
     }
 
     if (user.password === password) {
       return response.json({ token: user.id })
     } else {
-      return response.json({ error: 'Senha inválida' }).status(401)
+      return response.status(401).json({ error: 'Senha incorreta' })
     }
   }
 }

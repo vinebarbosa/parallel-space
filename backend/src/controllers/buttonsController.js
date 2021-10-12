@@ -20,6 +20,9 @@ module.exports = {
   get: async (request, response) => {
     const id = request.headers.authorization
     const buttons = await connection('buttons').select('*').where('user_id', id)
+    if (buttons.length === 0) {
+      return response.status(401).json({ error: 'Usuário não autorizado' })
+    }
     return response.json(buttons)
   },
   update: async (request, response) => {
@@ -36,10 +39,10 @@ module.exports = {
         await connection('buttons').where('id', button.id).update(button)
         return response.sendStatus(204)
       } else {
-        return response.json({ error: 'Não autorizado!' }).status(401)
+        return response.status(401).json({ error: 'Usuário não autorizado' })
       }
     } catch {
-      return response.sendStatus(400)
+      return response.status(400).json({ error: 'Requisição inválida' })
     }
   }
 }
