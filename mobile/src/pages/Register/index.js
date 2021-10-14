@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { View, Image, Text, TouchableOpacity } from 'react-native'
+import { Image, Text, TouchableOpacity } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 import titleImage from './../../assets/title.png'
 
+import VerticalContainer from '../../components/VerticalContainer'
 import Card from './../../components/Card'
 import Input from './../../components/Input'
 import Button from './../../components/Button'
@@ -16,10 +17,10 @@ function Register() {
     <>
       <StatusBar style="light" backgroundColor="#121214" />
 
-      <View style={styles.container}>
+      <VerticalContainer>
         <Image source={titleImage} style={styles.title} />
 
-        <Card altura={490}>
+        <Card altura="58%">
           <Text style={styles.cardTitle}>Crie sua conta</Text>
 
           <Input name="mail" placeholder="Seu email" />
@@ -38,7 +39,7 @@ function Register() {
           <Feather name="arrow-left" size={24} color="#8257E5" />
           <Text style={styles.registerTextLink}>Voltar para o login</Text>
         </TouchableOpacity>
-      </View>
+      </VerticalContainer>
     </>
   )
 }

@@ -1,14 +1,6 @@
 import { StyleSheet } from 'react-native'
-import Constants from 'expo-constants'
 
 export default StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#121214',
-    marginTop: Constants.statusBarHeight,
-    alignItems: 'center'
-  },
   title: {
     marginTop: '30%',
     marginBottom: '20%'

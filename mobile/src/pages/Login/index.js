@@ -4,6 +4,7 @@ import { View, Image, Text, TouchableOpacity } from 'react-native'
 
 import titleImage from './../../assets/title.png'
 
+import VerticalContainer from './../../components/VerticalContainer'
 import Card from './../../components/Card'
 import Input from './../../components/Input'
 import Button from './../../components/Button'
@@ -15,10 +16,10 @@ function Login() {
     <>
       <StatusBar style="light" backgroundColor="#121214" />
 
-      <View style={styles.container}>
+      <VerticalContainer>
         <Image source={titleImage} style={styles.title} />
 
-        <Card altura={440}>
+        <Card altura="50%">
           <Text style={styles.cardTitle}>Faça seu login</Text>
 
           <Input name="mail" placeholder="Seu email" />
@@ -33,7 +34,7 @@ function Login() {
             </TouchableOpacity>
           </View>
         </Card>
-      </View>
+      </VerticalContainer>
     </>
   )
 }
