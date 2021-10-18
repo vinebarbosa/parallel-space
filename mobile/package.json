@@ -8,6 +8,10 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.9",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "axios": "^0.23.0",
     "expo": "~42.0.1",
     "expo-constants": "^11.0.1",
     "expo-screen-orientation": "~3.3.0",
@@ -15,6 +19,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-safe-area-context": "3.2.0",
+    "react-native-screens": "~3.4.0",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
