@@ -5,7 +5,11 @@ import Routes from './routes'
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      theme={{
+        colors: { background: '#121214' }
+      }}
+    >
       <Routes />
     </NavigationContainer>
   )
