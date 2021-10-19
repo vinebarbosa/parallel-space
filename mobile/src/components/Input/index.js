@@ -1,4 +1,3 @@
-// /* eslint-disable react/display-name */
 import React, {
   useState,
   createRef,
@@ -27,7 +26,6 @@ function _Input(props, ref) {
     return {
       focusOnError() {
         setError(true)
-        inputRef.current.focus()
       },
       resetError() {
         setError(false)
@@ -46,11 +44,11 @@ function _Input(props, ref) {
 
   const _styles = {
     input: {
-      borderColor: error ? '#d73628' : isFocused ? '#8257E5' : '#121214',
-      borderWidth: error | isFocused ? 1 : 0
+      borderColor: error ? '#ef5350' : isFocused ? '#8257E5' : '#121214',
+      borderWidth: error | isFocused ? 2 : 0
     },
-    icon: error ? '#d73628' : isFocused | isFilled ? '#8257E5' : '#757575',
-    securityIcon: error ? '#d73628' : isFocused ? '#8257E5' : '#757575'
+    icon: error ? '#ef5350' : isFocused | isFilled ? '#8257E5' : '#757575',
+    securityIcon: error ? '#ef5350' : isFocused ? '#8257E5' : '#757575'
   }
 
   return (
