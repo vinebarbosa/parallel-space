@@ -1,6 +1,7 @@
-import { StatusBar } from 'expo-status-bar'
 import React from 'react'
+import { StatusBar } from 'expo-status-bar'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import titleImage from './../../assets/title.png'
 
@@ -12,6 +13,8 @@ import Button from './../../components/Button'
 import styles from './styles'
 
 function Login() {
+  const navigation = useNavigation()
+
   return (
     <>
       <StatusBar style="light" backgroundColor="#121214" />
@@ -29,7 +32,11 @@ function Login() {
 
           <View style={styles.registerTextContainer}>
             <Text style={styles.registerText}>Não possui uma conta?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Register')
+              }}
+            >
               <Text style={styles.registerTextLink}> Registre-se</Text>
             </TouchableOpacity>
           </View>

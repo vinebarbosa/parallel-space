@@ -4,7 +4,7 @@ import { Image, View } from 'react-native'
 
 import * as ScreenOrientation from 'expo-screen-orientation'
 
-import HorizontalContainer from './../../components/HorizontalContainer'
+import HorizontalContainer from '../../components/HorizontalContainer'
 
 import fogueteImage from './../../assets/foguete.png'
 import titleSmallImage from './../../assets/titleSmall.png'
@@ -12,7 +12,7 @@ import PadsContainer from '../../components/PadsContainer'
 
 import styles from './styles'
 
-function DashBoard() {
+function Profile() {
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
   return (
     <>
@@ -28,4 +28,4 @@ function DashBoard() {
   )
 }
 
-export default DashBoard
+export default Profile

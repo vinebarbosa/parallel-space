@@ -1,8 +1,12 @@
 import React from 'react'
-import { View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
 
-import Login from "./pages/Login"
+import Routes from './routes'
 
 export default function App() {
-  return <Login />
+  return (
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
+  )
 }

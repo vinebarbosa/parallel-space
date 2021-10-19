@@ -1,5 +1,6 @@
-import { StatusBar } from 'expo-status-bar'
 import React from 'react'
+import { useNavigation } from '@react-navigation/core'
+import { StatusBar } from 'expo-status-bar'
 import { Image, Text, TouchableOpacity } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
@@ -13,6 +14,7 @@ import Button from './../../components/Button'
 import styles from './styles'
 
 function Register() {
+  const navigation = useNavigation()
   return (
     <>
       <StatusBar style="light" backgroundColor="#121214" />
@@ -35,7 +37,12 @@ function Register() {
           <Button>CADASTRAR</Button>
         </Card>
 
-        <TouchableOpacity style={styles.registerTextContainer}>
+        <TouchableOpacity
+          style={styles.registerTextContainer}
+          onPress={() => {
+            navigation.goBack()
+          }}
+        >
           <Feather name="arrow-left" size={24} color="#8257E5" />
           <Text style={styles.registerTextLink}>Voltar para o login</Text>
         </TouchableOpacity>
