@@ -25,6 +25,7 @@ function _Input(props, ref) {
   useImperativeHandle(ref, () => {
     return {
       focusOnError() {
+        inputRef.current.focus()
         setError(true)
       },
       resetError() {
