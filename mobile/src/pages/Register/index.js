@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar'
 import { Image, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import * as yup from 'yup'
-import { AuthContext } from '../../contexts/Authcontext'
+import useAuth from '../../hooks/Authentication'
 
 import titleImage from './../../assets/title.png'
 
@@ -18,7 +18,7 @@ import styles from './styles'
 
 function Register() {
   const navigation = useNavigation()
-  const context = useContext(AuthContext)
+  const context = useAuth()
 
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')

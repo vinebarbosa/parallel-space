@@ -7,9 +7,16 @@ export default StyleSheet.create({
     backgroundColor: '#121214'
   },
   logoContainer: {
-    flex: 0.9,
+    width: '30%',
+    height: '100%',
     backgroundColor: '#121214',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  logoutButton: {
+    position: 'absolute',
+    top: 20,
+    left: 15,
+    flexDirection: 'row'
   }
 })

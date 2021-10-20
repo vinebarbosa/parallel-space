@@ -1,10 +1,10 @@
-import React, { useState, createRef, useContext } from 'react'
+import React, { useState, createRef } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { View, Image, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import * as yup from 'yup'
 
-import { AuthContext } from '../../contexts/Authcontext'
+import useAuth from '../../hooks/Authentication'
 
 import titleImage from './../../assets/title.png'
 
@@ -18,7 +18,7 @@ import styles from './styles'
 
 function Login() {
   const navigation = useNavigation()
-  const context = useContext(AuthContext)
+  const context = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
