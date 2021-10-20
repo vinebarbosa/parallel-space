@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#121214"
-      }
+      },
+      "package": "com.vinebarbosa.parallelspacejs"
     },
     "androidStatusBar": {
       "barStyle": "light-content",
