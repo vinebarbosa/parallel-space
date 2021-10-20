@@ -1,9 +1,10 @@
-import React, { useState, createRef } from 'react'
+import React, { useState, createRef, useContext } from 'react'
 import { useNavigation } from '@react-navigation/core'
 import { StatusBar } from 'expo-status-bar'
 import { Image, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import * as yup from 'yup'
+import { AuthContext } from '../../contexts/Authcontext'
 
 import titleImage from './../../assets/title.png'
 
@@ -17,6 +18,7 @@ import styles from './styles'
 
 function Register() {
   const navigation = useNavigation()
+  const context = useContext(AuthContext)
 
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
@@ -29,6 +31,8 @@ function Register() {
   const inputPassword2 = createRef()
 
   const [messages, setMessages] = useState([])
+
+  let isRequesting = false
 
   function showToast(text, type = 'error') {
     const message = {
@@ -104,8 +108,33 @@ function Register() {
   }
 
   async function handlePressButton() {
-    const validated = await validarDados()
-    if (validated) return true
+    if (!isRequesting) {
+      isRequesting = true
+
+      const validated = await validarDados()
+
+      if (validated) {
+        const response = await context.Registro(email, password, name)
+
+        if (response === 'OK') {
+          showToast(
+            'Cadastrado efetuado com sucesso! Agora você já pode fazer login',
+            'sucess'
+          )
+
+          setTimeout(() => {
+            navigation.goBack()
+          }, 3000)
+        }
+
+        if (response === 'Usuário já cadastrado') {
+          inputEmail.current.focusOnError()
+          showToast('Usuário já cadastrado', 'error')
+        }
+
+        isRequesting = false
+      }
+    }
   }
 
   return (

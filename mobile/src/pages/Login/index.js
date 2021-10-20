@@ -1,8 +1,10 @@
-import React, { useState, createRef } from 'react'
+import React, { useState, createRef, useContext } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { View, Image, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import * as yup from 'yup'
+
+import { AuthContext } from '../../contexts/Authcontext'
 
 import titleImage from './../../assets/title.png'
 
@@ -16,6 +18,7 @@ import styles from './styles'
 
 function Login() {
   const navigation = useNavigation()
+  const context = useContext(AuthContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,6 +27,8 @@ function Login() {
   const inputPassword = createRef()
 
   const [messages, setMessages] = useState([])
+
+  let isRequesting = false
 
   function showToast(text, type = 'error') {
     const message = {
@@ -55,7 +60,7 @@ function Login() {
         })
         .email(() => {
           inputEmail.current.focusOnError()
-          showToast('Formato de email inválido', 'sucess')
+          showToast('Formato de email inválido', 'error')
         })
         .validate(email)
     } catch {
@@ -78,8 +83,25 @@ function Login() {
   }
 
   async function handlePressButton() {
-    const validated = await validarDados()
-    if (validated) return true
+    if (!isRequesting) {
+      isRequesting = true
+
+      const validated = await validarDados()
+
+      if (validated) {
+        const response = await context.Login(email, password)
+
+        if (response === 'Usuário não cadastrado') {
+          inputEmail.current.focusOnError()
+          showToast('Usuário não cadastrado', 'error')
+        } else if (response === 'Senha incorreta') {
+          inputPassword.current.focusOnError()
+          showToast('Senha incorreta', 'error')
+        }
+
+        isRequesting = false
+      }
+    }
   }
 
   return (
