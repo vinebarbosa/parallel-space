@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
       if (token && name) {
         await AsyncStorage.setItem('@ParallelSpaceJS:name', name)
         await AsyncStorage.setItem('@ParallelSpaceJS:token', token)
-        api.defaults.headers.authorization = token
+        api.defaults.headers.common.Authorization = token
         setName(name)
       }
     } catch (error) {
@@ -42,10 +42,10 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     async function LoadStoragedData() {
       const _name = await AsyncStorage.getItem('@ParallelSpaceJS:name')
-      const _token = await AsyncStorage.getItem('@ParallelSpaceJS:name')
+      const _token = await AsyncStorage.getItem('@ParallelSpaceJS:token')
 
       if (_token && _name) {
-        api.defaults.headers.authorization = _token
+        api.defaults.headers.common.Authorization = _token
         setName(_name)
       }
       setIsLoading(false)
