@@ -14,19 +14,12 @@ function Routes() {
   const { signed, isLoading } = useAuth()
 
   if (!isLoading) {
-    setTimeout(() => {
-      SplashScreen.hideAsync().then(() => {
-        if (signed) {
-          ScreenOrientation.lockAsync(
-            ScreenOrientation.OrientationLock.LANDSCAPE
-          )
-        } else {
-          ScreenOrientation.lockAsync(
-            ScreenOrientation.OrientationLock.PORTRAIT_UP
-          )
-        }
-      })
-    }, 2000)
+    SplashScreen.hideAsync()
+    if (signed) {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+    } else {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
+    }
   }
 
   return signed ? <AppRoutes /> : <AuthRoutes />

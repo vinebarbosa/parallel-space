@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import api from '../services/api'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import * as Updates from 'expo-updates'
 
 export const AuthContext = createContext({})
 
@@ -18,8 +17,8 @@ export function AuthProvider({ children }) {
       if (token && name) {
         await AsyncStorage.setItem('@ParallelSpaceJS:name', name)
         await AsyncStorage.setItem('@ParallelSpaceJS:token', token)
-        api.defaults.headers.Authorization = token
-        Updates.reloadAsync()
+        api.defaults.headers.authorization = token
+        setName(name)
       }
     } catch (error) {
       return error.response.data.error
@@ -27,8 +26,8 @@ export function AuthProvider({ children }) {
   }
 
   async function Logout() {
-    AsyncStorage.clear()
-    Updates.reloadAsync()
+    await AsyncStorage.clear()
+    setName('')
   }
 
   async function Registro(email, password, name) {
@@ -46,7 +45,7 @@ export function AuthProvider({ children }) {
       const _token = await AsyncStorage.getItem('@ParallelSpaceJS:name')
 
       if (_token && _name) {
-        api.defaults.headers.Authorization = _token
+        api.defaults.headers.authorization = _token
         setName(_name)
       }
       setIsLoading(false)
