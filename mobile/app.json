@@ -1,9 +1,9 @@
 {
   "expo": {
     "entryPoint": "./index.js",
-    "name": "Parallel Space",
+    "name": "Parallel Space JS",
     "slug": "parallelspace",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "backgroundColor": "#121214",
