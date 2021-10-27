@@ -18,5 +18,14 @@ export default StyleSheet.create({
     top: 20,
     left: 15,
     flexDirection: 'row'
+  },
+  logoutButtonText: {
+    color: '#CCC',
+    paddingLeft: 5
+  },
+  pads: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
