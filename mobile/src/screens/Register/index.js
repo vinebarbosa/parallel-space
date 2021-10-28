@@ -1,4 +1,4 @@
-import React, { useState, createRef, useContext } from 'react'
+import React, { useState, createRef } from 'react'
 import { useNavigation } from '@react-navigation/core'
 import { StatusBar } from 'expo-status-bar'
 import { Image, Text, TouchableOpacity, ScrollView } from 'react-native'

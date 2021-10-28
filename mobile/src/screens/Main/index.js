@@ -4,6 +4,7 @@ import { Image, View, Text, TouchableOpacity, FlatList } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 import useAuth from '../../hooks/Authentication'
+import useObs from '../../hooks/useObsWebSocket'
 
 import api from '../../services/api'
 
@@ -17,6 +18,7 @@ import { Pad } from '../../components/Pad'
 
 function Profile() {
   const { Logout } = useAuth()
+  const { disconnect } = useObs()
 
   const [data, setData] = useState([])
 
@@ -28,6 +30,11 @@ function Profile() {
     getButtonsData()
   }, [])
 
+  async function logout() {
+    await disconnect()
+    Logout()
+  }
+
   return (
     <>
       <StatusBar hidden={true} />
@@ -35,7 +42,7 @@ function Profile() {
         <View style={styles.logoContainer}>
           <Image source={fogueteImage} />
           <Image source={titleSmallImage} />
-          <TouchableOpacity onPress={Logout} style={styles.logoutButton}>
+          <TouchableOpacity onPress={logout} style={styles.logoutButton}>
             <Feather name="log-out" size={20} color="#CCC" />
             <Text style={styles.logoutButtonText}>Sair</Text>
           </TouchableOpacity>
