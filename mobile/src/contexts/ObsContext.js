@@ -45,6 +45,10 @@ export function ObsProvider({ children }) {
     await obs.send('StartStopStreaming')
   }
 
+  async function disconnect() {
+    obs.disconnect()
+  }
+
   return (
     <ObsContext.Provider
       value={{
@@ -53,7 +57,8 @@ export function ObsProvider({ children }) {
         startStopRecording,
         pauseRecording,
         resumeRecording,
-        startStopStreaming
+        startStopStreaming,
+        disconnect
       }}
     >
       {children}
