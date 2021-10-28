@@ -1,14 +1,16 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
-    "version": "1.0.0",
+    "entryPoint": "./index.js",
+    "name": "Parallel Space JS",
+    "slug": "parallelspace",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "backgroundColor": "#121214",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#121214"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -16,17 +18,17 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
+      "backgroundColor": "#121214",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#121214"
+      },
+      "package": "com.vinebarbosa.parallelspacejs"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#121214"
     }
   }
 }
