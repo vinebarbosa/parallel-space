@@ -50,8 +50,8 @@ module.exports = {
   },
 
   get: async (request, response) => {
-    const imageId = request.params.id
-    const image = await connection('icons').where('id', imageId).first()
+    const buttonId = request.params.id
+    const image = await connection('icons').where('button_id', buttonId).first()
 
     if (image) return response.send(image)
     else return response.status(404).json({ error: 'Imagem não encontrada' })
