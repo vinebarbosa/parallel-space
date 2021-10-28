@@ -3,8 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import iosPressets from '../configs/iosPresset'
 
-import Login from '../pages/Login'
-import Register from '../pages/Register'
+import Login from '../screens/Login'
+import Register from '../screens/Register'
 
 const Stack = createStackNavigator()
 

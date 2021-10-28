@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import { ObsProvider } from '../contexts/ObsContext'
 
-import Profile from '../pages/Profile'
+import Profile from '../screens/Main'
 import iosPressets from '../configs/iosPresset'
 
 const Stack = createStackNavigator()
