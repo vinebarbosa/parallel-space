@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { TouchableOpacity, Image } from 'react-native'
 import useObs from '../../hooks/useObsWebSocket'
 import api from '../../services/api'
+import plugin from '../../services/plugin'
 
 import { styles } from './styles'
 
@@ -65,7 +66,11 @@ export function Pad({ button }) {
     }
   }
 
-  function handleSystemCommand(button) {}
+  function handleSystemCommand(button) {
+    if ((button.category === 'link') | (button.category === 'shortcut')) {
+      plugin.post(`/open?url=${button.description}`)
+    }
+  }
 
   return (
     <TouchableOpacity style={styles.container} onPress={handleClick}>

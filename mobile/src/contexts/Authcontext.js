@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import api from '../services/api'
+import plugin from '../services/plugin'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export const AuthContext = createContext({})
@@ -18,6 +19,7 @@ export function AuthProvider({ children }) {
         await AsyncStorage.setItem('@ParallelSpaceJS:name', name)
         await AsyncStorage.setItem('@ParallelSpaceJS:token', token)
         api.defaults.headers.common.Authorization = token
+        plugin.defaults.headers.common.Authorization = token
         setName(name)
       }
     } catch (error) {
@@ -46,6 +48,7 @@ export function AuthProvider({ children }) {
 
       if (_token && _name) {
         api.defaults.headers.common.Authorization = _token
+        plugin.defaults.headers.common.Authorization = _token
         setName(_name)
       }
       setIsLoading(false)
