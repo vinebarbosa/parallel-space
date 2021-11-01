@@ -68,7 +68,7 @@ export function Pad({ button }) {
 
   function handleSystemCommand(button) {
     if ((button.category === 'link') | (button.category === 'shortcut')) {
-      plugin.post('/open', {}, { headers: { url: button.description } })
+      plugin.post(`/open?url=${button.description}`)
     }
   }
 
