@@ -10,8 +10,12 @@ export function ObsProvider({ children }) {
 
   useEffect(() => {
     async function connectToObs() {
-      await _obs.connect({ address: '192.168.0.104:4444' })
-      setObs(_obs)
+      try {
+        await _obs.connect({ address: '192.168.0.104:4444' })
+        setObs(_obs)
+      } catch {
+        setTimeout(connectToObs, 10000)
+      }
     }
     connectToObs()
   }, [])
