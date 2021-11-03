@@ -1,16 +1,15 @@
-const { spawn } = require('child_process')
-const _open = require('open')
+const open = require('open')
 
-function open(request, response) {
+function launch(request, response) {
   const url = request.query.url
 
   if (url.includes('.lnk')) {
-    spawn('explorer', [url])
+    open(url, { app: { name: 'explorer' } })
   } else {
-    _open(url)
+    open(url)
   }
 
   response.send()
 }
 
-module.exports = open
+module.exports = launch
