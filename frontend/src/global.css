@@ -75,6 +75,11 @@ button {
   margin-top: 40px;
   font-size: 18px;
 }
+.button-purple:hover {
+  opacity: 0.8;
+
+
+}
 
 .back {
   display: flex;

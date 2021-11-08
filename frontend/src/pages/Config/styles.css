@@ -1,3 +1,17 @@
+.cabeca{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+.cabeca1{
+  display: flex;
+  align-items: center;
+}
+.cabeca1 p{
+  padding-right: 10px;
+}
 .parte1-div {
   height: 70vh;
   width: 100vw;

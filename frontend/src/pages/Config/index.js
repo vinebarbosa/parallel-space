@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiLogOut } from 'react-icons/fi';
 
 import './styles.css';
 import tituloPequenoImg from '../../assets/img/titulo-pequeno.svg';
@@ -8,16 +9,23 @@ import fogueteImg from '../../assets/img/foguete.svg';
 import jupterImg from '../../assets/img/jupter.svg';
 import Pads from '../../components/Pads';
 
-function Config() {
+export default function Config() {
+  const name = localStorage.getItem('name');
   return (
     <>
       <div className="parte1-div">
-        <img className="titulo-pequeno" src={tituloPequenoImg} alt="titulo" />
+        <div className="cabeca">
+          <img className="titulo-pequeno" src={tituloPequenoImg} alt="titulo" />
+          <div className="cabeca1">
+            <p>Bem Vindo(a), {name}!</p>
+
+            <FiLogOut size={24} />
+          </div>
+        </div>
 
         <div className="centralizar-container centralizar-vertical ">
           <Pads />
         </div>
-
         <img className="cometa" src={cometaImg} alt="cometa" />
         <img className="sol" src={solImg} alt="sol" />
         <img className="foguete-img" src={fogueteImg} alt="foguete" />
@@ -30,5 +38,3 @@ function Config() {
     </>
   );
 }
-
-export default Config;
