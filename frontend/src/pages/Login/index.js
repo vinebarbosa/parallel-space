@@ -1,29 +1,36 @@
-import React, { useState } from 'react';
-
-import './styles.css';
-
-import { FiMail, FiLock } from 'react-icons/fi';
+import React, { useState, createRef } from 'react'
 
 import { Link, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
+
 import fogueteImg from '../../assets/img/foguete.svg';
 import tituloImg from '../../assets/img/titulo.svg';
 
 import api from '../../services/api';
+
+import { Container } from './styles'
+import { Input } from '../../components/Input';
+import { Card } from '../../components/Card';
+import { SubmitButton } from '../../components/SubmitButton';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
 
+  const inputEmail = createRef()
+  const inputPassword = createRef()
+
   async function validarDados() {
     try {
       await yup
         .string()
         .required(() => {
-          alert('Este campo é obrigatório');
+          inputEmail.current.focusOnError()
+          alert('O campo é obrigatório');
         })
         .email(() => {
+          inputEmail.current.focusOnError()
           alert('Formato de email inválido');
         })
         .validate(email);
@@ -35,7 +42,8 @@ export default function Login() {
       await yup
         .string()
         .required(() => {
-          alert('Este campo é obrigatório');
+          inputPassword.current.focusOnError()
+          alert('O campo é obrigatório');
         })
         .validate(password);
     } catch {
@@ -65,63 +73,55 @@ export default function Login() {
   }
 
   return (
-    <>
-      <div className="titulo">
-        <img src={tituloImg} alt="titulo" />
-      </div>
+    <Container>
+      <img src={tituloImg} alt="titulo" className="titulo" />
 
-      <div className="login-container">
-        <h2 className="titulo-container">Faça seu login</h2>
+      <Card altura="450px">
+        <h2 className="titulo">Faça seu login</h2>
 
-        <div className="centralizar-container">
-          <form onSubmit={handleLogin}>
-            <div className="input-container">
-              <FiMail
-                size={24}
-                color="#757575"
-                className="input-container-img"
-              />
-              <input
-                type="email"
-                placeholder="E-mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+        <form onSubmit={handleLogin}>
+          <Input
+            ref={inputEmail}
+            placeholder="Seu e-mail"
+            name="mail"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value)
+              inputEmail.current.resetError()
+            }}
+            onBlur={() => {
+              inputEmail.current.handleBlur()
+              if (email !== '') inputEmail.current.fielled()
+              else inputEmail.current.unfielled()
+            }}
+          />
+          <Input
+            ref={inputPassword}
+            placeholder="Sua senha"
+            name="pass"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value)
+              inputPassword.current.resetError()
+            }}
+            onBlur={() => {
+              inputPassword.current.handleBlur()
+              if (password !== '') inputPassword.current.fielled()
+              else inputPassword.current.unfielled()
+            }}
+            securityTextEntry
+          />
 
-            <div className="input-container">
-              <FiLock
-                size={24}
-                color="#757575"
-                className="input-container-img"
-              />
-              <input
-                type="password"
-                placeholder="Senha"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+          <SubmitButton>ENTRAR</SubmitButton>
+        </form>
 
-            <button
-              onClick={handleLogin}
-              className="button-purple"
-              type="submit"
-            >
-              ENTRAR
-            </button>
-          </form>
-        </div>
-
-        <div className="registre-container">
+        <div className="register-area">
           <p>Não tem uma conta?</p>
-          <p>
-            <Link to="/register">Registre-se</Link>
-          </p>
+          <Link to="/register" className="register-link">Registre-se</Link>
         </div>
+      </Card>
 
-        <img className="foguete" src={fogueteImg} alt="foguete" />
-      </div>
-    </>
+      <img src={fogueteImg} alt="foguete" className="foguete" />
+    </Container>
   );
 }
