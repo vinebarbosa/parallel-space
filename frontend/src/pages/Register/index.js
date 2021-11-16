@@ -90,12 +90,16 @@ export default function Register() {
     if (validated) {
       try {
         const response = await api.post('user', data);
-        // eslint-disable-next-line no-alert
         alert(`seu ID de acesso é ${response.data.id}`);
         history.push('/');
       } catch (err) {
-        // eslint-disable-next-line no-alert
-        alert(err.response.data.error);
+
+        const response = err.response.data.error
+
+        if (response === 'Usuário já cadastrado') {
+          inputEmail.current.focusOnError()
+          alert(response);
+        }
       }
     }
   }

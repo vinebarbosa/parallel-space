@@ -66,8 +66,16 @@ export default function Login() {
         localStorage.setItem('token', response.data.token);
         history.push('/config');
       } catch (err) {
-        // eslint-disable-next-line no-alert
-        alert(err.response.data.error);
+
+        const response = err.response.data.error
+
+        if (response === 'Usuário não cadastrado') {
+          inputEmail.current.focusOnError()
+          alert(response)
+        } else if (response === 'Senha incorreta') {
+          inputPassword.current.focusOnError()
+          alert(response)
+        }
       }
     }
   }

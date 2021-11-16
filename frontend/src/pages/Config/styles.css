@@ -75,7 +75,9 @@
   background-color: #292A2D;
 }
 
-.centralizar-vertical {
+.centralizar-container {
+  display: flex;
+  align-items: center;
   height: 80%;
   justify-content: center;
 }

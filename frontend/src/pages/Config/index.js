@@ -23,7 +23,7 @@ export default function Config() {
           </div>
         </div>
 
-        <div className="centralizar-container centralizar-vertical ">
+        <div className="centralizar-container">
           <Pads />
         </div>
         <img className="cometa" src={cometaImg} alt="cometa" />
