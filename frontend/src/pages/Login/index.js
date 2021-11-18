@@ -60,10 +60,10 @@ export default function Login() {
 
     if (validated) {
       try {
-        // eslint-disable-next-line no-undef
         const response = await api.post('session', { email, password });
         localStorage.setItem('name', response.data.name);
         localStorage.setItem('token', response.data.token);
+        api.defaults.headers.common.Authorization = response.data.token
         history.push('/config');
       } catch (err) {
 

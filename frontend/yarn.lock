@@ -9240,6 +9240,11 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
+react-file-input-custom@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-file-input-custom/-/react-file-input-custom-1.0.7.tgz#8c2dd8ab05ca0b5a5ab915052e8aebed24ee62eb"
+  integrity sha512-f3LAZYhsjitsfMw4AwknGRAYXJI3HZ6Xn840hSayA0kjTcQ1+zGzbYOEIyDRem4km0VP73vkznZteSHO51615Q==
+
 react-icons@^4.2.0:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"

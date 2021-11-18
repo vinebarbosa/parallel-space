@@ -16,4 +16,10 @@ export const Button = styled.button`
     font-size: 18px;
     font-weight: bold;
   }
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
 `
