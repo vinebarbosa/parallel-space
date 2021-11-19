@@ -9,8 +9,6 @@ export function Form() {
   const [ category, setCategory ] = useState("")
   const [ description, setDescription ] = useState("")
 
-  console.log(type, category, description);
-
   function handleTypeChange(value) {
     setType(value)
     setCategory("")
@@ -26,8 +24,9 @@ export function Form() {
     handleTypeChange("")
   }
 
-  function handleSubmmitButton() {
-
+  function handleSubmmit(event) {
+    event.preventDefault();
+    console.log(type, category, description);
   }
 
   return (
@@ -35,7 +34,7 @@ export function Form() {
       <ImageSelect>
         <div></div>
       </ImageSelect>
-      <Container>
+      <Container onSubmit={(event) => handleSubmmit(event)}>
         <div className="select-container">
           <label>TIPO</label>
           <select value={type} onChange={(event) => handleTypeChange(event.target.value)} >
