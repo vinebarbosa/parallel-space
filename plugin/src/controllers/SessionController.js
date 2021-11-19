@@ -4,6 +4,7 @@ const SessionController = {
   login: async (request, response) => {
     if (request.headers.authorization === undefined)
       return response.sendStatus(401)
+    await connection('user').update({ token: '' })
     await connection('user').update({ token: request.headers.authorization })
     return response.send()
   },
