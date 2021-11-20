@@ -9,6 +9,8 @@ export function Form() {
   const [ category, setCategory ] = useState("")
   const [ description, setDescription ] = useState("")
 
+  console.log(type, category, description);
+
   function handleTypeChange(value) {
     setType(value)
     setCategory("")
@@ -92,7 +94,7 @@ export function Form() {
                 width="200px"
                 text="Selecione um atalho"
                 classes="shortcut-selector"
-                handleChange={(event) => setDescription(event.target.value)}
+                handleChange={(event) => setDescription(event.target.files[0])}
               />
             </div>
           )
