@@ -13,7 +13,7 @@ module.exports = {
       const { key, originalname: name, location: _url = '' } = request.file
 
       // eslint-disable-next-line camelcase
-      const button_id = request.headers.buttonid
+      const button_id = request.query.button_id
       const userId = request.headers.authorization
 
       const bdUser = await connection('users')

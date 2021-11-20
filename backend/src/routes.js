@@ -26,7 +26,7 @@ routes.post(
 routes.get('/image/:id', iconsController.get)
 routes.delete('/image/:id', iconsController.delete)
 
-routes.post('/localaddress', localAddressesController.create)
+routes.post('/localaddress', localAddressesController.update)
 routes.get('/localaddress', localAddressesController.get)
 
 module.exports = routes
