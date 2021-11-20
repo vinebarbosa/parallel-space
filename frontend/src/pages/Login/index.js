@@ -1,51 +1,135 @@
-import React from 'react';
+import React, { useState, createRef } from 'react'
 
-import './styles.css';
+import { Link, useHistory } from 'react-router-dom';
+import * as yup from 'yup';
 
-import { FiMail, FiLock } from 'react-icons/fi';
-
-import { Link } from 'react-router-dom';
 import fogueteImg from '../../assets/img/foguete.svg';
 import tituloImg from '../../assets/img/titulo.svg';
 
-function Login() {
+import api from '../../services/api';
+
+import { Container } from './styles'
+import { Input } from '../../components/Input';
+import { Card } from '../../components/Card';
+import { SubmitButton } from '../../components/SubmitButton';
+
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const history = useHistory();
+
+  const inputEmail = createRef()
+  const inputPassword = createRef()
+
+  async function validarDados() {
+    try {
+      await yup
+        .string()
+        .required(() => {
+          inputEmail.current.focusOnError()
+          alert('O campo é obrigatório');
+        })
+        .email(() => {
+          inputEmail.current.focusOnError()
+          alert('Formato de email inválido');
+        })
+        .validate(email);
+    } catch {
+      return false;
+    }
+    // Validando Senha
+    try {
+      await yup
+        .string()
+        .required(() => {
+          inputPassword.current.focusOnError()
+          alert('O campo é obrigatório');
+        })
+        .validate(password);
+    } catch {
+      return false;
+    }
+
+    return true;
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+
+    const validated = await validarDados();
+
+    if (validated) {
+      try {
+        const response = await api.post('session', { email, password });
+        localStorage.setItem('name', response.data.name);
+        localStorage.setItem('token', response.data.token);
+        api.defaults.headers.common.Authorization = response.data.token
+        history.push('/config');
+      } catch (err) {
+
+        const response = err.response.data.error
+
+        if (response === 'Usuário não cadastrado') {
+          inputEmail.current.focusOnError()
+          alert(response)
+        } else if (response === 'Senha incorreta') {
+          inputPassword.current.focusOnError()
+          alert(response)
+        }
+      }
+    }
+  }
+
   return (
-    <>
-      <div className="titulo">
-        <img src={tituloImg} alt="titulo" />
-      </div>
+    <Container>
+      <img src={tituloImg} alt="titulo" className="titulo" />
 
-      <div className="login-container">
-        <h2 className="titulo-container">Faça seu login</h2>
+      <Card altura="450px">
+        <h2 className="titulo">Faça seu login</h2>
 
-        <div className="centralizar-container">
-          <div className="input-container">
-            <FiMail size={24} color="#757575" className="input-container-img" />
-            <input type="email" placeholder="E-mail" />
-          </div>
+        <form onSubmit={handleLogin}>
+          <Input
+            ref={inputEmail}
+            placeholder="Seu e-mail"
+            name="mail"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value)
+              inputEmail.current.resetError()
+            }}
+            onBlur={() => {
+              inputEmail.current.handleBlur()
+              if (email !== '') inputEmail.current.fielled()
+              else inputEmail.current.unfielled()
+            }}
+          />
+          <Input
+            ref={inputPassword}
+            placeholder="Sua senha"
+            name="pass"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value)
+              inputPassword.current.resetError()
+            }}
+            onBlur={() => {
+              inputPassword.current.handleBlur()
+              if (password !== '') inputPassword.current.fielled()
+              else inputPassword.current.unfielled()
+            }}
+            securityTextEntry
+          />
 
-          <div className="input-container">
-            <FiLock size={24} color="#757575" className="input-container-img" />
-            <input type="password" placeholder="Senha" />
-          </div>
-          <Link to="/config">
-            <button className="button-purple" type="submit">
-              ENTRAR
-            </button>
-          </Link>
-        </div>
+          <SubmitButton>ENTRAR</SubmitButton>
+        </form>
 
-        <div className="registre-container">
+        <div className="register-area">
           <p>Não tem uma conta?</p>
-          <p>
-            <Link to="/register">Registre-se</Link>
-          </p>
+          <Link to="/register" className="register-link">Registre-se</Link>
         </div>
+      </Card>
 
-        <img className="foguete" src={fogueteImg} alt="foguete" />
-      </div>
-    </>
+      <img src={fogueteImg} alt="foguete" className="foguete" />
+    </Container>
   );
 }
-
-export default Login;

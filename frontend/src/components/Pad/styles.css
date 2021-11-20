@@ -5,3 +5,7 @@
   border: none;
   background-color: #292A2D;
 }
+
+.selected {
+  border: 3px solid #888;
+}
