@@ -1,4 +1,5 @@
 // Update with your config settings.
+const path = require('path')
 
 module.exports = {
   development: {
@@ -19,7 +20,7 @@ module.exports = {
       ssl: { rejectUnauthorized: false }
     },
     migrations: {
-      directory: './src/database/migrations'
+      directory: path.resolve(__dirname, 'src', 'database', 'migrations')
     },
     pool: {
       min: 2,
