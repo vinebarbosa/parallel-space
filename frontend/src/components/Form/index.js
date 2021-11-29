@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { ButtonsContainer, Container, ImageSelect } from './styles'
 import { ReactFileInputCustom } from 'react-file-input-custom';
 import { Button } from '../Button';
 
-export function Form() {
-  const [ type, setType ] = useState("")
-  const [ category, setCategory ] = useState("")
-  const [ description, setDescription ] = useState("")
+export function Form({ pad }) {
+  const [ type, setType ] = useState('')
+  const [ category, setCategory ] = useState('')
+  const [ description, setDescription ] = useState('')
+
+  useEffect(() => {
+    setType(pad.type)
+    setCategory(pad.category)
+    setDescription(pad.description)
+  }, [pad])
+
+  console.log(type, category, description);
 
   function handleTypeChange(value) {
     setType(value)
@@ -36,7 +44,10 @@ export function Form() {
       <Container onSubmit={(event) => handleSubmmit(event)}>
         <div className="select-container">
           <label>TIPO</label>
-          <select value={type} onChange={(event) => handleTypeChange(event.target.value)} >
+          <select
+            value={type === null ? "" : type}
+            onChange={(event) => handleTypeChange(event.target.value)}
+          >
             <option value=""></option>
             <option value="obs">OBS</option>
             <option value="system">SISTEMA</option>
@@ -45,7 +56,10 @@ export function Form() {
 
         <div className="select-container">
           <label>CATEGORIA</label>
-          <select onChange={(event) => handleCategoryChange(event.target.value)}>
+          <select
+            value={category === null ? "" : category}
+            onChange={(event) => handleCategoryChange(event.target.value)}
+          >
             <option value=""></option>
             {
               type === "obs" && (
