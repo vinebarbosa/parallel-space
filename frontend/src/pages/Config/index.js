@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 
 import api from '../../services/api';
+import { plugin } from '../../services/plugin'
 
 import './styles.css';
 
@@ -20,6 +21,7 @@ export default function Config() {
   const token = localStorage.getItem('token');
 
   api.defaults.headers.common.Authorization = token
+  plugin.defaults.headers.common.Authorization = token
 
   const [selectedPad, setSelectedPad] = useState({})
   const [pads, setPads] = useState([])

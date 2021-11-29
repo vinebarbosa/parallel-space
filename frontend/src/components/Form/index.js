@@ -4,6 +4,9 @@ import { ButtonsContainer, Container, ImageSelect } from './styles'
 import { ReactFileInputCustom } from 'react-file-input-custom';
 import { Button } from '../Button';
 
+import api from '../../services/api'
+import { plugin } from '../../services/plugin'
+
 export function Form({ pad }) {
   const [ type, setType ] = useState('')
   const [ category, setCategory ] = useState('')
@@ -14,8 +17,6 @@ export function Form({ pad }) {
     setCategory(pad.category)
     setDescription(pad.description)
   }, [pad])
-
-  console.log(type, category, description);
 
   function handleTypeChange(value) {
     setType(value)
@@ -32,8 +33,36 @@ export function Form({ pad }) {
     handleTypeChange("")
   }
 
-  function handleSubmmit(event) {
+  async function handleSubmmit(event) {
     event.preventDefault();
+    console.log(type, category, description);
+
+    const button = {
+      id: pad.id,
+      type: type,
+      category: category,
+      description: description
+    }
+
+    try {
+      if (category === 'shortcut') {
+        const formData = new FormData()
+        formData.append('file', description)
+        const response = await plugin.post('shortcut', formData, {
+          headers: {
+          "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+          }
+        })
+
+        button.description = response.data.filePath
+      }
+
+      const response = await api.put('button', button)
+      if (response.status === 204) alert("Botão atualizado!")
+    } catch (err) {
+      console.log(err);
+    }
+
   }
 
   return (
@@ -66,7 +95,7 @@ export function Form({ pad }) {
                 <>
                   <option value="scene">CENA</option>
                   <option value="record">GRAVAÇÃO</option>
-                  <option value="streamming">TRANSMISSÃO</option>
+                  <option value="streaming">TRANSMISSÃO</option>
                 </>
               )
             }
