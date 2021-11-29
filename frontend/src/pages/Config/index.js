@@ -24,9 +24,14 @@ export default function Config() {
   const [selectedPad, setSelectedPad] = useState({})
   const [pads, setPads] = useState([])
 
+  console.log(selectedPad);
+
   useEffect(() => {
     async function getPadsData() {
       const response = await api.get('/buttons')
+      response.data.sort((a, b) => {
+        return a.position - b.position
+      })
       setPads(response.data)
     }
     getPadsData()
@@ -39,7 +44,6 @@ export default function Config() {
           <img className="titulo-pequeno" src={tituloPequenoImg} alt="titulo" />
           <div className="cabeca1">
             <p>Bem Vindo(a), {name}!</p>
-
             <FiLogOut size={24} />
           </div>
         </div>

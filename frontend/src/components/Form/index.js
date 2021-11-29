@@ -9,8 +9,6 @@ export function Form() {
   const [ category, setCategory ] = useState("")
   const [ description, setDescription ] = useState("")
 
-  console.log(type, category, description);
-
   function handleTypeChange(value) {
     setType(value)
     setCategory("")
@@ -28,7 +26,6 @@ export function Form() {
 
   function handleSubmmit(event) {
     event.preventDefault();
-    console.log(type, category, description);
   }
 
   return (
