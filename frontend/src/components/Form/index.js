@@ -7,7 +7,7 @@ import { Button } from '../Button';
 import api from '../../services/api'
 import { plugin } from '../../services/plugin'
 
-export function Form({ pad }) {
+export function Form({ pad, update }) {
   const [ type, setType ] = useState('')
   const [ category, setCategory ] = useState('')
   const [ description, setDescription ] = useState('')
@@ -27,6 +27,10 @@ export function Form({ pad }) {
   function handleCategoryChange(value) {
     setCategory(value)
     setDescription("")
+  }
+
+  function handleDescriptionChange(value) {
+    setDescription(value)
   }
 
   function handleCleanButton() {
@@ -59,6 +63,7 @@ export function Form({ pad }) {
 
       const response = await api.put('button', button)
       if (response.status === 204) alert("Botão atualizado!")
+      update()
     } catch (err) {
       console.log(err);
     }
@@ -136,6 +141,38 @@ export function Form({ pad }) {
                 classes="shortcut-selector"
                 handleChange={(event) => setDescription(event.target.files[0])}
               />
+            </div>
+          )
+        }
+
+        {
+          category === "streaming" && (
+            <div className="select-container">
+              <label>COMANDO</label>
+              <select
+                value={description === null ? "" : description}
+                onChange={(event) => handleDescriptionChange(event.target.value)}
+              >
+                <option value=""></option>
+                <option value="start-stop">INICIAR OU PARAR</option>
+              </select>
+            </div>
+          )
+        }
+
+        {
+          category === "record" && (
+            <div className="select-container">
+              <label>COMANDO</label>
+              <select
+                value={description === null ? "" : description}
+                onChange={(event) => handleDescriptionChange(event.target.value)}
+              >
+                <option value=""></option>
+                <option value="start-stop">INICIAR OU PARAR</option>
+                <option value="pause">PAUSAR</option>
+                <option value="resume">RETOMAR</option>
+              </select>
             </div>
           )
         }

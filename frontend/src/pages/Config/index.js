@@ -26,6 +26,12 @@ export default function Config() {
   const [selectedPad, setSelectedPad] = useState({})
   const [pads, setPads] = useState([])
 
+  const [reload, setReload] = useState(false)
+
+  function forceUpdate() {
+    setReload(!reload)
+  }
+
   useEffect(() => {
     async function getPadsData() {
       const response = await api.get('/buttons')
@@ -35,7 +41,7 @@ export default function Config() {
       setPads(response.data)
     }
     getPadsData()
-  }, [])
+  }, [reload])
 
   return (
     <>
@@ -72,7 +78,8 @@ export default function Config() {
       <div className="parte2-div">
         {
           !!selectedPad.id
-          ? <Form pad={selectedPad}/> : <p>Clique em um pad para configurar sua função</p>
+          ? <Form pad={selectedPad} update={forceUpdate}/>
+          : <p>Clique em um pad para configurar sua função</p>
         }
       </div>
     </>
