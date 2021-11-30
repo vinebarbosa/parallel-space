@@ -19,7 +19,7 @@ function Pad({ changeSelectedPad, data, selectedPad }) {
       }
     }
     getImageUrl()
-  }, [])
+  }, [data])
 
   return (
     <div onClick={() => {

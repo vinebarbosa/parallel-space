@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 
-import { ButtonsContainer, Container, ImageSelect } from './styles'
+import { FormComponent ,ButtonsContainer, Container, ImageSelect } from './styles'
 import { ReactFileInputCustom } from 'react-file-input-custom';
 import { Button } from '../Button';
 
 import api from '../../services/api'
 import { plugin } from '../../services/plugin'
+import { FileInput } from '../InputFile';
 
 export function Form({ pad, update }) {
   const [ type, setType ] = useState('')
   const [ category, setCategory ] = useState('')
   const [ description, setDescription ] = useState('')
+  const [ imageFile, setImageFile ] = useState('')
 
   useEffect(() => {
     setType(pad.type)
@@ -39,7 +41,20 @@ export function Form({ pad, update }) {
 
   async function handleSubmmit(event) {
     event.preventDefault();
-    console.log(type, category, description);
+
+    if (imageFile !== '') {
+      const formData = new FormData()
+      formData.append('file', imageFile)
+      try {
+        await api.post(`image?button_id=${pad.id}`, formData, {
+          headers: {
+          "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+          }
+        })
+      } catch (e) {
+        console.error(e)
+      }
+    }
 
     const button = {
       id: pad.id,
@@ -62,7 +77,7 @@ export function Form({ pad, update }) {
       }
 
       const response = await api.put('button', button)
-      if (response.status === 204) alert("Botão atualizado!")
+      if (response.status === 204) alert("Pad atualizado com sucesso!")
       update()
     } catch (err) {
       console.log(err);
@@ -71,11 +86,22 @@ export function Form({ pad, update }) {
   }
 
   return (
-    <>
+    <FormComponent onSubmit={(event) => handleSubmmit(event)}>
       <ImageSelect>
-        <div></div>
+        <div className="select-image-component-title">
+          <p>ÍCONE</p>
+        </div>
+        <div className="select-image-component-input">
+          <FileInput
+            reload={pad}
+            backgroundColor="#646464"
+            classes="image-selector"
+            width="90px"
+            handleChange={(event) => { setImageFile(event.target.files[0])}}
+          />
+        </div>
       </ImageSelect>
-      <Container onSubmit={(event) => handleSubmmit(event)}>
+      <Container>
         <div className="select-container">
           <label>TIPO</label>
           <select
@@ -134,7 +160,7 @@ export function Form({ pad, update }) {
             <div className="select-container">
               <label>ARQUIVO</label>
               <ReactFileInputCustom
-                acceptedExtensions=".lnk"
+                acceptedExtensions=".lnk, .url"
                 backgroundColor="#646464"
                 width="200px"
                 text="Selecione um atalho"
@@ -182,6 +208,6 @@ export function Form({ pad, update }) {
           <Button type="submit" background="primary">SALVAR</Button>
         </ButtonsContainer>
       </Container>
-    </>
+    </FormComponent>
   )
 }
