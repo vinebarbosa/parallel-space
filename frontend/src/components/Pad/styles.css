@@ -6,6 +6,19 @@
   background-color: #292A2D;
 }
 
+.pad img {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 15px;
+}
+
 .selected {
-  border: 3px solid #888;
+  border: 4px solid #DDD;
+}
+
+.selected img {
+  width: 100%;
+  height: 100%;
+  border: none;
 }

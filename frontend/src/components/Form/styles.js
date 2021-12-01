@@ -1,5 +1,12 @@
 import styled from 'styled-components'
 
+export const FormComponent = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
+
 export const Container = styled.form`
   height: 100%;
   display: flex;
@@ -53,14 +60,27 @@ export const ImageSelect = styled.div`
   height: 100%;
   margin-right: 45px;
   display: flex;
-  align-items: center; ;
+  align-items: center;
+  flex-direction: column;
 
-  div {
+  div.select-image-component-title {
+    margin-bottom: 10px;
+    p {
+      font-size: 24px ;
+    }
+  }
+
+  div.select-image-component-input {
     height: 90px;
     width: 90px;
     background: #292A2D;
     border-radius: 15px;
-    border: 3px solid #757575;
+
+    .image-selector {
+      border-radius: 15px;
+      width: 90px;
+      height: 90px;
+    }
   }
 `
 

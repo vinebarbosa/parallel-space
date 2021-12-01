@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 
 import api from '../../services/api';
+import { plugin } from '../../services/plugin'
 
 import './styles.css';
 
@@ -20,17 +21,27 @@ export default function Config() {
   const token = localStorage.getItem('token');
 
   api.defaults.headers.common.Authorization = token
+  plugin.defaults.headers.common.Authorization = token
 
   const [selectedPad, setSelectedPad] = useState({})
   const [pads, setPads] = useState([])
 
+  const [reload, setReload] = useState(false)
+
+  function forceUpdate() {
+    setReload(!reload)
+  }
+
   useEffect(() => {
     async function getPadsData() {
       const response = await api.get('/buttons')
+      response.data.sort((a, b) => {
+        return a.position - b.position
+      })
       setPads(response.data)
     }
     getPadsData()
-  }, [])
+  }, [reload])
 
   return (
     <>
@@ -39,7 +50,6 @@ export default function Config() {
           <img className="titulo-pequeno" src={tituloPequenoImg} alt="titulo" />
           <div className="cabeca1">
             <p>Bem Vindo(a), {name}!</p>
-
             <FiLogOut size={24} />
           </div>
         </div>
@@ -68,7 +78,8 @@ export default function Config() {
       <div className="parte2-div">
         {
           !!selectedPad.id
-          ? <Form/> : <p>Clique em um pad para configurar sua função</p>
+          ? <Form pad={selectedPad} update={forceUpdate}/>
+          : <p>Clique em um pad para configurar sua função</p>
         }
       </div>
     </>
