@@ -59,10 +59,12 @@ module.exports = {
 
   delete: async (request, response) => {
     try {
-      const imageId = request.params.id
+      const buttonId = request.params.id
       const userId = request.headers.authorization
 
-      const image = await connection('icons').where('id', imageId).first()
+      const image = await connection('icons').select('*').where('id', buttonId).first()
+
+      if (!image) return response.sendStatus(200)
 
       const bdUser = await connection('users')
         .select('*')
