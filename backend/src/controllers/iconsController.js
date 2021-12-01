@@ -97,7 +97,7 @@ module.exports = {
         )
       }
 
-      await connection('icons').where('id', imageId).delete()
+      await connection('icons').where('button_id', buttonId).delete()
       return response.sendStatus(204)
     } catch {
       return response.status(400).json({ error: 'Requisição inválida' })
