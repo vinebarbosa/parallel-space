@@ -59,10 +59,12 @@ module.exports = {
 
   delete: async (request, response) => {
     try {
-      const imageId = request.params.id
+      const buttonId = request.params.id
       const userId = request.headers.authorization
 
-      const image = await connection('icons').where('id', imageId).first()
+      const image = await connection('icons').select('*').where('button_id', buttonId).first()
+
+      if (!image) return response.sendStatus(200)
 
       const bdUser = await connection('users')
         .select('*')
@@ -95,7 +97,7 @@ module.exports = {
         )
       }
 
-      await connection('icons').where('id', imageId).delete()
+      await connection('icons').where('button_id', buttonId).delete()
       return response.sendStatus(204)
     } catch {
       return response.status(400).json({ error: 'Requisição inválida' })
