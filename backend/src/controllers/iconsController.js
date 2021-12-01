@@ -62,7 +62,7 @@ module.exports = {
       const buttonId = request.params.id
       const userId = request.headers.authorization
 
-      const image = await connection('icons').select('*').where('id', buttonId).first()
+      const image = await connection('icons').select('*').where('button_id', buttonId).first()
 
       if (!image) return response.sendStatus(200)
 
