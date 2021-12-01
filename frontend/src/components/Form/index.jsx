@@ -14,10 +14,14 @@ export function Form({ pad, update }) {
   const [ description, setDescription ] = useState('')
   const [ imageFile, setImageFile ] = useState('')
 
+  const [clear, setClear ] = useState(false)
+
   useEffect(() => {
+    setClear(false)
     setType(pad.type)
     setCategory(pad.category)
     setDescription(pad.description)
+    setImageFile('')
   }, [pad])
 
   function handleTypeChange(value) {
@@ -37,12 +41,16 @@ export function Form({ pad, update }) {
 
   function handleCleanButton() {
     handleTypeChange("")
+    setClear(true)
   }
 
   async function handleSubmmit(event) {
     event.preventDefault();
 
+    console.log(imageFile);
+
     if (imageFile !== '') {
+      await api.delete(`image/${pad.id}`)
       const formData = new FormData()
       formData.append('file', imageFile)
       try {
@@ -76,7 +84,10 @@ export function Form({ pad, update }) {
         button.description = response.data.filePath
       }
 
+      if(clear === true) await api.delete(`image/${pad.id}`)
+
       const response = await api.put('button', button)
+
       if (response.status === 204) alert("Pad atualizado com sucesso!")
       update()
     } catch (err) {
@@ -93,7 +104,7 @@ export function Form({ pad, update }) {
         </div>
         <div className="select-image-component-input">
           <FileInput
-            reload={pad}
+            reload={[pad, clear]}
             backgroundColor="#646464"
             classes="image-selector"
             width="90px"

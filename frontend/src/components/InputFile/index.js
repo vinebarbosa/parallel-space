@@ -17,7 +17,7 @@ export const FileInput = ({
 
   useEffect(() => {
     setLogo('')
-  }, [reload])
+  }, [...reload])
 
   const handleClick = useCallback(() => {
     if (inputFileRef && inputFileRef.current) {
@@ -35,9 +35,9 @@ export const FileInput = ({
 
   function formatName(name) {
     let _name = name
-    if (_name.length > 10) {
+    if (_name.length > 5) {
       let fileType = name.split('.')[1]
-      _name = _name.slice(0,10) + '.' + fileType
+      _name = _name.slice(0,5) + '.' + fileType
     }
     return _name
   }
