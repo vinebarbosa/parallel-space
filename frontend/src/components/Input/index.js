@@ -9,7 +9,7 @@ import { Icon } from '../Icon'
 import { Container } from './styles'
 
 function _Input(props, ref) {
-  const [isSecurity, setIsSecurity] = useState(props.securityTextEntry)
+  const [isSecurity, setIsSecurity] = useState(!!props.security)
 
   const [error, setError] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
@@ -58,7 +58,7 @@ function _Input(props, ref) {
         <Icon name={props.name} size={22} color={styles.icon} />
       </div>
       {
-        props.securityTextEntry && (
+        props.security && (
           <div
             className="security-entry-icon"
             onClick={() => {

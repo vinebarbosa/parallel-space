@@ -20,11 +20,6 @@ import { Form } from '../../components/Form';
 export default function Config() {
   const { Logout, name } = useAuth()
 
-  const token = localStorage.getItem('@ParallelSpace:token');
-
-  api.defaults.headers.common.Authorization = token
-  plugin.defaults.headers.common.Authorization = token
-
   const [selectedPad, setSelectedPad] = useState({})
   const [pads, setPads] = useState([])
 
@@ -50,9 +45,17 @@ export default function Config() {
   }, [reload])
 
   useEffect(() => {
-    async function loginPlugin() {
+    async function updatePluginCredentials() {
       await plugin.post('login')
+      updateLocalAddress()
     }
+
+    async function updateLocalAddress() {
+      const { data } = await plugin.get('localaddress')
+      await api.post(`localaddress?&local_address=http://${data.localAddress}:5555`)
+    }
+
+    updatePluginCredentials()
   }, [])
 
   return (
