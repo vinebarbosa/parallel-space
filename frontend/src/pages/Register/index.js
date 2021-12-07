@@ -1,7 +1,8 @@
 import React, { createRef, useState } from 'react';
+import { useAuth } from '../../hooks/Authentication'
 
 import { FiArrowLeft } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import tituloImg from '../../assets/img/titulo.svg';
 
@@ -18,12 +19,13 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmPassword] = useState('');
 
+  const { Registro } = useAuth()
+
   const inputEmail = createRef()
   const inputName = createRef()
   const inputPassword = createRef()
   const inputPassword2 = createRef()
 
-  const history = useHistory();
   async function validarDados() {
     // Validando email
     try {
@@ -88,18 +90,15 @@ export default function Register() {
     const validated = await validarDados();
 
     if (validated) {
-      try {
-        const response = await api.post('user', data);
-        alert(`seu ID de acesso é ${response.data.id}`);
-        history.push('/');
-      } catch (err) {
+      const response = await Registro(email, password, name)
 
-        const response = err.response.data.error
+      if (response === 'OK') {
+        alert("Usuário cadastrado com sucesso!");
+      }
 
-        if (response === 'Usuário já cadastrado') {
-          inputEmail.current.focusOnError()
-          alert(response);
-        }
+      else if (response === 'Usuário já cadastrado') {
+        inputEmail.current.focusOnError()
+        alert(response);
       }
     }
   }
