@@ -110,7 +110,7 @@ export default function Login() {
               if (password !== '') inputPassword.current.fielled()
               else inputPassword.current.unfielled()
             }}
-            securityTextEntry
+            security="on"
           />
 
           <SubmitButton>ENTRAR</SubmitButton>

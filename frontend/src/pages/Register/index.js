@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import tituloImg from '../../assets/img/titulo.svg';
 
-// eslint-disable-next-line no-unused-vars
-import api from '../../services/api';
 import { Container } from './styles';
 import { Card } from '../../components/Card';
 import { Input } from '../../components/Input';
@@ -157,7 +155,7 @@ export default function Register() {
               if (password !== '') inputPassword.current.fielled()
               else inputPassword.current.unfielled()
             }}
-            securityTextEntry
+            security="on"
           />
 
           <Input
@@ -174,7 +172,7 @@ export default function Register() {
               if (confirmpassword !== '') inputPassword2.current.fielled()
               else inputPassword2.current.unfielled()
             }}
-            securityTextEntry
+            security="on"
           />
 
           <SubmitButton>CADASTRAR</SubmitButton>

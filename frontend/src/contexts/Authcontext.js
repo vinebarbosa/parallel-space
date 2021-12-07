@@ -15,8 +15,8 @@ export function AuthProvider({ children }) {
       const { token, name } = response.data
 
       if (token && name) {
-        await localStorage.setItem('@ParallelSpace:name', name)
-        await localStorage.setItem('@ParallelSpace:token', token)
+        localStorage.setItem('@ParallelSpace:name', name)
+        localStorage.setItem('@ParallelSpace:token', token)
         api.defaults.headers.common.Authorization = token
         plugin.defaults.headers.common.Authorization = token
         setName(name)
