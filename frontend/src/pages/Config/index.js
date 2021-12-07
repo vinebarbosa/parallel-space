@@ -52,7 +52,7 @@ export default function Config() {
 
     async function updateLocalAddress() {
       const { data } = await plugin.get('localaddress')
-      await api.post(`localaddress?&local_address=http://${data.localAddress}:5555`)
+      await api.post(`localaddress?&local_address=http://${data.localAddress}:5554`)
     }
 
     updatePluginCredentials()
