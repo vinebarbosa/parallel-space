@@ -13,8 +13,27 @@ export function Form({ pad, update }) {
   const [ category, setCategory ] = useState('')
   const [ description, setDescription ] = useState('')
   const [ imageFile, setImageFile ] = useState('')
+  const [ cenas, setCenas ] = useState([])
 
   const [clear, setClear ] = useState(false)
+
+  useEffect(() => {
+    async function getScenes() {
+      if (type === 'obs') {
+        try {
+          const { data } = await plugin.get('scenes')
+          if (!!data.error) {
+            alert("Por favor, abra o OBS Studio")
+            handleTypeChange("")
+          } else {
+            setCenas(data)
+          }
+        } catch {}
+      }
+    }
+
+    getScenes()
+  }, [type])
 
   useEffect(() => {
     setClear(false)
@@ -209,6 +228,21 @@ export function Form({ pad, update }) {
             </div>
           )
         }
+
+        { category === 'scene' && (
+          <div className="select-container">
+            <label>CENA</label>
+            <select
+              value={description === null ? "" : description}
+              onChange={(event) => handleDescriptionChange(event.target.value)}
+            >
+              <option value=""></option>
+              {
+                cenas.map((cena) => <option key={Math.random()} value={cena}>{cena}</option>)
+              }
+            </select>
+          </div>
+        ) }
 
         <ButtonsContainer>
           <Button type="button" onClick={handleCleanButton} background="normal">LIMPAR</Button>
