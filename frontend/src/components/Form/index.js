@@ -47,8 +47,6 @@ export function Form({ pad, update }) {
   async function handleSubmmit(event) {
     event.preventDefault();
 
-    console.log(imageFile);
-
     if (imageFile !== '') {
       await api.delete(`image/${pad.id}`)
       const formData = new FormData()
@@ -90,9 +88,7 @@ export function Form({ pad, update }) {
 
       if (response.status === 204) alert("Pad atualizado com sucesso!")
       update()
-    } catch (err) {
-      console.log(err);
-    }
+    } catch {}
 
   }
 

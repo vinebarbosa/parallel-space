@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
+import { useAuth } from '../../hooks/Authentication'
 
 import api from '../../services/api';
 import { plugin } from '../../services/plugin'
@@ -12,13 +13,14 @@ import solImg from '../../assets/img/sol.svg';
 import fogueteImg from '../../assets/img/foguete.svg';
 import jupterImg from '../../assets/img/jupter.svg';
 
-import { Pads, PadsContainer } from './styles';
+import { Pads, PadsContainer, LogoutButtonContainer } from './styles';
 import Pad from '../../components/Pad';
 import { Form } from '../../components/Form';
 
 export default function Config() {
-  const name = localStorage.getItem('name');
-  const token = localStorage.getItem('token');
+  const { Logout, name } = useAuth()
+
+  const token = localStorage.getItem('@ParallelSpace:token');
 
   api.defaults.headers.common.Authorization = token
   plugin.defaults.headers.common.Authorization = token
@@ -32,6 +34,10 @@ export default function Config() {
     setReload(!reload)
   }
 
+  function handleLogout() {
+    Logout()
+  }
+
   useEffect(() => {
     async function getPadsData() {
       const response = await api.get('/buttons')
@@ -43,6 +49,12 @@ export default function Config() {
     getPadsData()
   }, [reload])
 
+  useEffect(() => {
+    async function loginPlugin() {
+      await plugin.post('login')
+    }
+  }, [])
+
   return (
     <>
       <div className="parte1-div">
@@ -50,7 +62,12 @@ export default function Config() {
           <img className="titulo-pequeno" src={tituloPequenoImg} alt="titulo" />
           <div className="cabeca1">
             <p>Bem Vindo(a), {name}!</p>
-            <FiLogOut size={24} />
+            <LogoutButtonContainer>
+              <button onClick={handleLogout}>
+                <FiLogOut color="#FFF" size={24} />
+              </button>
+            </LogoutButtonContainer>
+
           </div>
         </div>
 

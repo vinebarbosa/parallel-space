@@ -15,3 +15,18 @@ export const Pads = styled.div`
   align-content: center;
   justify-content: center;
 `
+
+export const LogoutButtonContainer = styled.div`
+  button {
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+`
