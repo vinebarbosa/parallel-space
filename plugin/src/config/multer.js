@@ -20,7 +20,11 @@ module.exports = {
     fileSize: 2 * 1024 * 1024
   },
   fileFilter: (request, file, callback) => {
-    file.mimetype === 'application/x-ms-shortcut'
+    const allowedMimes = [
+      'application/octet-stream',
+      'application/x-ms-shortcut'
+    ]
+    allowedMimes.includes(file.mimetype)
       ? callback(null, true)
       : callback(new Error('Invalid file type'))
   }
