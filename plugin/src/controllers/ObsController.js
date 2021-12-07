@@ -33,13 +33,11 @@ module.exports = {
     return response.send()
   },
   stream: async (request, response) => {
-    const { command } = request.query
-
     if (!obs.getConnectionStatus()) {
       return response.json({ error: 'Não conectadado' })
     }
 
-    await obs.stream(command)
+    await obs.stream()
     return response.send()
   }
 }

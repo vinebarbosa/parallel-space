@@ -27,27 +27,27 @@ async function swithScene(scene) {
 }
 
 async function record(command) {
-  switch (command) {
-    case 'start-stop':
-      await obs.send('StartStopRecording')
-      break
-    case 'pause':
-      await obs.send('PauseRecording')
-      break
-    case 'resume':
-      await obs.send('ResumeRecording')
-      break
-    default:
-      break
-  }
+  try {
+    switch (command) {
+      case 'start-stop':
+        await obs.send('StartStopRecording')
+        break
+      case 'pause':
+        await obs.send('PauseRecording')
+        break
+      case 'resume':
+        await obs.send('ResumeRecording')
+        break
+      default:
+        break
+    }
+  } catch {}
 }
 
-async function stream(command) {
-  switch (command) {
-    case 'start-stop':
-      await obs.send('StartStopStreaming')
-      break
-  }
+async function stream() {
+  try {
+    await obs.send('StartStopStreaming')
+  } catch {}
 }
 
 obs.on('Exiting', () => {
