@@ -1,4 +1,5 @@
 const express = require('express')
+const obs = require('./obs')
 
 const cors = require('cors')
 const routes = require('./routes')
@@ -9,4 +10,4 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(routes)
 
-app.listen(5554)
+app.listen(5554, obs.connect)
