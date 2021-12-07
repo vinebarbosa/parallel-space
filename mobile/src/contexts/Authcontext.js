@@ -20,7 +20,13 @@ export function AuthProvider({ children }) {
         await AsyncStorage.setItem('@ParallelSpaceJS:token', token)
         api.defaults.headers.common.Authorization = token
         plugin.defaults.headers.common.Authorization = token
+        updatePluginAddress()
         setName(name)
+      }
+
+      async function updatePluginAddress() {
+        const { data } = await api.get('localaddress')
+        plugin.defaults.headers.common.baseURL = data.localAddress
       }
     } catch (error) {
       return error.response.data.error

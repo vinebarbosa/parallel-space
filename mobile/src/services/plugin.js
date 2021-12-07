@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-const plugin = axios.create({
-  baseURL: 'http://192.168.0.104:5555'
-})
+const plugin = axios.create()
 
 export default plugin

@@ -4,7 +4,6 @@ import { Image, View, Text, TouchableOpacity, FlatList } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 import useAuth from '../../hooks/Authentication'
-import useObs from '../../hooks/useObsWebSocket'
 
 import api from '../../services/api'
 
@@ -18,20 +17,23 @@ import { Pad } from '../../components/Pad'
 
 function Profile() {
   const { Logout } = useAuth()
-  const { disconnect } = useObs()
 
   const [data, setData] = useState([])
 
   useEffect(() => {
     async function getButtonsData() {
       const response = await api.get('buttons')
+
+      response.data.sort((a, b) => {
+        return a.position - b.position
+      })
+
       setData(response.data)
     }
     getButtonsData()
   }, [])
 
   async function logout() {
-    await disconnect()
     Logout()
   }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { TouchableOpacity, Image } from 'react-native'
-import useObs from '../../hooks/useObsWebSocket'
 import api from '../../services/api'
 import plugin from '../../services/plugin'
 
@@ -8,6 +7,23 @@ import { styles } from './styles'
 
 export function Pad({ button }) {
   const [imageUrl, setImageUrl] = useState('')
+
+  useEffect(() => {
+    async function getPluginAddress() {
+      const { data } = await api.get('localaddress')
+      plugin.defaults.baseURL = data.localAddress
+
+      getURL()
+    }
+
+    async function getURL() {
+      try {
+        const { data } = await api.get(`image/${button.id}`)
+        setImageUrl(data.url)
+      } catch {}
+    }
+    getPluginAddress()
+  }, [])
 
   useEffect(() => {
     async function getURL() {
@@ -19,14 +35,31 @@ export function Pad({ button }) {
     getURL()
   }, [])
 
-  const {
-    getScenes,
-    swithToScene,
-    startStopRecording,
-    pauseRecording,
-    resumeRecording,
-    startStopStreaming
-  } = useObs()
+  async function getScenes() {
+    const { data } = await plugin.get('scenes')
+    if (data.error !== undefined) return data.error
+    else return data
+  }
+
+  async function swithToScene(scene) {
+    await plugin.post(`scene?scene=${scene}`)
+  }
+
+  async function startStopRecording() {
+    await plugin.post(`record?command=start-stop`)
+  }
+
+  async function pauseRecording() {
+    await plugin.post(`record?command=pause`)
+  }
+
+  async function resumeRecording() {
+    await plugin.post(`record?command=resume`)
+  }
+
+  async function startStopStreaming() {
+    await plugin.post(`stream?command=start-stop`)
+  }
 
   async function handleClick() {
     switch (button.type) {
@@ -44,8 +77,9 @@ export function Pad({ button }) {
   async function handleObsCommand(button) {
     if (button.category === 'scene') {
       const scenes = await getScenes()
-      if (scenes[button.description] !== undefined) {
-        await swithToScene(scenes[button.description])
+
+      if (typeof scenes === typeof []) {
+        await swithToScene(button.description)
       }
     } else if (button.category === 'record') {
       switch (button.description) {
