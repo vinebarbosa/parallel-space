@@ -18,7 +18,9 @@ import { Pad } from '../../components/Pad'
 function Profile() {
   const { Logout } = useAuth()
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+  ])
 
   useEffect(() => {
     async function getButtonsData() {
@@ -50,17 +52,13 @@ function Profile() {
           </TouchableOpacity>
         </View>
         <PadsContainer>
-          {data[0] ? (
-            <FlatList
-              contentContainerStyle={styles.pads}
-              data={data}
-              numColumns={5}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => <Pad button={item} />}
-            />
-          ) : (
-            <View />
-          )}
+          <FlatList
+            contentContainerStyle={styles.pads}
+            data={data}
+            numColumns={5}
+            keyExtractor={(item) => (item?.id ? item.id : item)}
+            renderItem={({ item }) => <Pad button={item} />}
+          />
         </PadsContainer>
       </HorizontalContainer>
     </>

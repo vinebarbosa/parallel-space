@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { TouchableOpacity, Image } from 'react-native'
+
 import api from '../../services/api'
 import plugin from '../../services/plugin'
+
+import { Skeleton } from '../Skeleton'
 
 import { styles } from './styles'
 
@@ -107,11 +110,16 @@ export function Pad({ button }) {
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={handleClick}>
-      <Image
-        style={styles.icon}
-        source={{ uri: imageUrl !== '' ? imageUrl : undefined }}
-      />
-    </TouchableOpacity>
+    <>
+      {button?.id && (
+        <TouchableOpacity style={styles.container} onPress={handleClick}>
+          <Image
+            style={styles.icon}
+            source={{ uri: imageUrl !== '' ? imageUrl : undefined }}
+          />
+        </TouchableOpacity>
+      )}
+      {!button?.id && <Skeleton />}
+    </>
   )
 }
