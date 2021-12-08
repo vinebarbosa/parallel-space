@@ -26,7 +26,14 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
   }
+  img.register-foguete{
+    position: absolute;
+    bottom: 50px;
+    right:50px;
+    height:250px;
+    transform: rotate(15deg);
 
+  }
   div.back {
     display: flex;
     flex-direction: row;

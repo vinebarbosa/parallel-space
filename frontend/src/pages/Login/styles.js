@@ -15,8 +15,10 @@ export const Container = styled.div`
 
   img.foguete {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 50px;
+    right:50px;
+    height:250px;
+    transform: rotate(15deg);
   }
 
   h2.titulo {

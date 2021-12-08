@@ -18,13 +18,18 @@ export const Pads = styled.div`
 
 export const LogoutButtonContainer = styled.div`
   button {
-    width: 24px;
-    height: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     background: transparent;
     border: none;
 
     transition: filter 0.2s;
-
+    p{
+      color: white;
+      padding-right: 5px;
+      font-weight:bold;
+    }
     &:hover {
       filter: brightness(0.8);
     }
