@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth  } from '../../hooks/Authentication'
 import * as yup from 'yup';
 
-import fogueteImg from '../../assets/img/foguete.svg';
+import fogueteImg from '../../assets/img/foguete.png';
 import tituloImg from '../../assets/img/titulo.svg';
 
 import { Container } from './styles'

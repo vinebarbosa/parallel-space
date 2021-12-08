@@ -10,7 +10,7 @@ import './styles.css';
 import tituloPequenoImg from '../../assets/img/titulo-pequeno.svg';
 import cometaImg from '../../assets/img/cometa.svg';
 import solImg from '../../assets/img/sol.svg';
-import fogueteImg from '../../assets/img/foguete.svg';
+import fogueteImg from '../../assets/img/foguete.png';
 import jupterImg from '../../assets/img/jupter.svg';
 
 import { Pads, PadsContainer, LogoutButtonContainer } from './styles';
@@ -62,17 +62,20 @@ export default function Config() {
     <>
       <div className="parte1-div">
         <div className="cabeca">
-          <img className="titulo-pequeno" src={tituloPequenoImg} alt="titulo" />
-          <div className="cabeca1">
+          <div className="welcome-mensager">
             <p>Bem Vindo(a), {name}!</p>
+          </div>
+            <img className="titulo-pequeno" src={tituloPequenoImg} alt="titulo" />
+          <div className="logout">
             <LogoutButtonContainer>
               <button onClick={handleLogout}>
+                <p> SAIR</p>
                 <FiLogOut color="#FFF" size={24} />
               </button>
             </LogoutButtonContainer>
-
           </div>
         </div>
+
 
         <PadsContainer>
           <Pads>

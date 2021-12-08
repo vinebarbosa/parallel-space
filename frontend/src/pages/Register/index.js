@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/Authentication'
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import fogueteImg from '../../assets/img/foguete.png';
 import tituloImg from '../../assets/img/titulo.svg';
 
 import { Container } from './styles';
@@ -179,12 +180,16 @@ export default function Register() {
         </form>
       </Card>
 
+
       <div className="back">
         <FiArrowLeft size={24} color="#8257E5" />
         <div>
           <Link to="/">Voltar para login</Link>
         </div>
+
       </div>
+      <img src={fogueteImg} alt="foguete" className="register-foguete" />
+
     </Container>
   );
 }
