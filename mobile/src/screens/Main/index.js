@@ -32,7 +32,9 @@ function Profile() {
 
       setData(response.data)
     }
-    getButtonsData()
+    try {
+      getButtonsData()
+    } catch {}
   }, [])
 
   async function logout() {
