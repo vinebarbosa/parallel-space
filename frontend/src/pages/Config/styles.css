@@ -1,16 +1,27 @@
 .cabeca{
   display: flex;
+  height: 40px;
+  width: 100%;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding-right: 10px;
+  justify-content: center;
 }
-.cabeca1{
-  display: flex;
-  align-items: center;
+.welcome-mensager{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
 }
-.cabeca1 p{
-  padding-right: 10px;
+.welcome-mensager p{
+  font-size: 18px;
+  font-weight: 400;
+
+}
+.logout{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
 }
 .parte1-div {
   height: 70vh;
@@ -30,7 +41,7 @@
 }
 
 .titulo-pequeno {
-  padding: 20px;
+  margin-top: 10px;
 }
 
 .cometa {
@@ -53,6 +64,9 @@
 
 .foguete-img {
   position: absolute;
-  left: 10vw;
-  top: 15vh;
+  left: 15vw;
+  top: 20vh;
+  height: 250px;
+  transform: rotate(15deg);
+
 }
