@@ -5,6 +5,7 @@ const userController = require('./controllers/userController')
 const sessionController = require('./controllers/sessionController')
 const buttonsController = require('./controllers/buttonsController')
 const iconsController = require('./controllers/iconsController')
+const localAddressesController = require('./controllers/localAddressesController')
 
 const multerConfig = require('./config/multer')
 
@@ -24,5 +25,8 @@ routes.post(
 )
 routes.get('/image/:id', iconsController.get)
 routes.delete('/image/:id', iconsController.delete)
+
+routes.post('/localaddress', localAddressesController.update)
+routes.get('/localaddress', localAddressesController.get)
 
 module.exports = routes

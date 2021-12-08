@@ -16,4 +16,4 @@ app.use(
   express.static(path.resolve(__dirname, '..', 'temp', 'uploads'))
 )
 
-app.listen(3333, 'localhost')
+app.listen(process.env.PORT || 3333)

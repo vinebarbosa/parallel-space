@@ -1,6 +1,7 @@
 const connection = require('./../database/connection')
 const gerarID = require('../utils/idGenerator')
 const buttonsController = require('./buttonsController')
+const localAddressesController = require('./localAddressesController')
 
 module.exports = {
   create: async (request, response) => {
@@ -30,6 +31,7 @@ module.exports = {
         .first()
 
       buttonsController.createAll(bdUser)
+      localAddressesController.create(bdUser)
 
       return response.status(201).json({ id: user.id })
     } else {

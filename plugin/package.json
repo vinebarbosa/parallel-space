@@ -1,0 +1,32 @@
+{
+  "name": "parallel-space-js-plugin",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Vinícios Barbosa",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "ip": "^1.1.5",
+    "knex": "^0.95.12",
+    "multer": "^1.4.3",
+    "obs-websocket-js": "^4.0.3",
+    "open": "^8.4.0",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1"
+  }
+}
