@@ -22,7 +22,9 @@ export function AuthProvider({ children }) {
         setName(name)
       }
     } catch (error) {
-      return error.response.data.error
+      return new Promise((resolve, reject) => {
+        reject(error.response.data.error)
+      })
     }
   }
 
@@ -34,9 +36,9 @@ export function AuthProvider({ children }) {
   async function Registro(email, password, name) {
     try {
       await api.post('user', { email, password, name })
-      return 'OK'
+      return new Promise(resolve => { resolve('OK') })
     } catch (error) {
-      return error.response.data.error
+      return new Promise((resolve, reject) => { reject(error.response.data.error) })
     }
   }
 
