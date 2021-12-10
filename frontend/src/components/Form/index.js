@@ -22,13 +22,17 @@ export function Form({ pad, update, showToast }) {
       if (type === 'obs') {
         try {
           const { data } = await plugin.get('scenes')
-          if (!!data.error) {
-            showToast("warning","Por favor, abra o OBS Studio")
+
+          if (data.error !== undefined) {
+            showToast('warning',"Para utilizar essas opções, abra o OBS Studio")
             handleTypeChange("")
           } else {
             setCenas(data)
           }
-        } catch {}
+        } catch {
+          showToast('error',"Falha na conexão. Abra o plugin e tente novamente")
+          handleTypeChange("")
+        }
       }
     }
 
