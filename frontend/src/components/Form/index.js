@@ -23,7 +23,7 @@ export function Form({ pad, update, showToast }) {
         try {
           const { data } = await plugin.get('scenes')
           if (!!data.error) {
-            alert("Por favor, abra o OBS Studio")
+            showToast("warning","Por favor, abra o OBS Studio")
             handleTypeChange("")
           } else {
             setCenas(data)
