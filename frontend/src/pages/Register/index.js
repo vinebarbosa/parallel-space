@@ -4,6 +4,8 @@ import { useAuth } from '../../hooks/Authentication'
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { toast, ToastContainer } from 'react-toastify'
+
 import fogueteImg from '../../assets/img/foguete.png';
 import tituloImg from '../../assets/img/titulo.svg';
 
@@ -32,11 +34,11 @@ export default function Register() {
         .string()
         .required(() => {
           inputEmail.current.focusOnError();
-          alert('O campo é obrigatório');
+          toast.error('Este campo é obrigatório');
         })
         .email(() => {
           inputEmail.current.focusOnError();
-          alert('Formato de email inválido');
+          toast.error('Formato de email inválido');
         })
         .validate(email);
     } catch {
@@ -49,7 +51,7 @@ export default function Register() {
         .string()
         .required(() => {
           inputName.current.focusOnError();
-          alert('O campo é obrigatório');
+          toast.error('Este campo é obrigatório');
         })
         .validate(name);
     } catch {
@@ -62,12 +64,12 @@ export default function Register() {
         .string()
         .required(() => {
           inputPassword.current.focusOnError();
-          alert('O campo é obrigatório');
+          toast.error('Este campo é obrigatório');
         })
         .validate(password);
       if (confirmpassword !== password) {
         inputPassword2.current.focusOnError();
-        alert('As senhas não coincidem');
+        toast.error('As senhas não coincidem');
         return false;
       }
     } catch {
@@ -89,21 +91,36 @@ export default function Register() {
     const validated = await validarDados();
 
     if (validated) {
-      const response = await Registro(email, password, name)
+      const promise = Registro(email, password, name).then(() => {
+        return new Promise((resolve) => { resolve("Usuário cadastrado com sucesso!") })
+      }, (response) => {
+          inputEmail.current.focusOnError()
+          return new Promise((resolve, reject) => { reject(response) })
+      })
 
-      if (response === 'OK') {
-        alert("Usuário cadastrado com sucesso!");
-      }
-
-      else if (response === 'Usuário já cadastrado') {
-        inputEmail.current.focusOnError()
-        alert(response);
-      }
+      toast.promise(
+        promise,
+        {
+          pending: 'Por favor, aguarde um momento...',
+          success: {
+            render({data}){
+              return data
+            },
+          },
+          error: {
+            render({data}){
+              return data
+            }
+          }
+        }
+      )
     }
   }
 
   return (
     <Container>
+      <ToastContainer position='top-right' theme='colored' style={{ fontSize: '18px' }} />
+
       <img src={tituloImg} alt="titulo" className="titulo" />
 
       <Card altura="490px">

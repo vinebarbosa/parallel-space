@@ -1,8 +1,9 @@
 import React, { useState, createRef } from 'react'
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth  } from '../../hooks/Authentication'
 import * as yup from 'yup';
+import { toast, ToastContainer } from 'react-toastify'
 
 import fogueteImg from '../../assets/img/foguete.png';
 import tituloImg from '../../assets/img/titulo.svg';
@@ -15,7 +16,6 @@ import { SubmitButton } from '../../components/SubmitButton';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
 
   const { Login } = useAuth()
 
@@ -28,11 +28,11 @@ export default function Login() {
         .string()
         .required(() => {
           inputEmail.current.focusOnError()
-          alert('O campo é obrigatório');
+          toast.error('Este campo é obrigatório')
         })
         .email(() => {
           inputEmail.current.focusOnError()
-          alert('Formato de email inválido');
+          toast.error('Formato de email inválido')
         })
         .validate(email);
     } catch {
@@ -44,7 +44,7 @@ export default function Login() {
         .string()
         .required(() => {
           inputPassword.current.focusOnError()
-          alert('O campo é obrigatório');
+          toast.error('Este campo é obrigatório')
         })
         .validate(password);
     } catch {
@@ -57,24 +57,40 @@ export default function Login() {
   async function handleLogin(e) {
     e.preventDefault();
 
+
     const validated = await validarDados();
 
     if (validated) {
 
-      const response = await Login(email, password)
+      const promisse = Login(email, password).then(() => {}, (response) => {
+        if (response === 'Usuário não cadastrado') {
+          inputEmail.current.focusOnError()
+          return new Promise((resolve, reject) => { reject(response) })
+        } else if (response === 'Senha incorreta') {
+          inputPassword.current.focusOnError()
+          return new Promise((resolve, reject) => { reject(response) })
+        }
+      })
 
-      if (response === 'Usuário não cadastrado') {
-        inputEmail.current.focusOnError()
-        alert(response)
-      } else if (response === 'Senha incorreta') {
-        inputPassword.current.focusOnError()
-        alert(response)
-      }
+      toast.promise(
+        promisse,
+        {
+          pending: 'Por favor, aguarde um momento...',
+          error: {
+            render({ data }){
+              return data
+            }
+          }
+        }
+      )
     }
+
+
   }
 
   return (
     <Container>
+      <ToastContainer position='top-right' theme='colored' style={{ fontSize: '18px' }} />
       <img src={tituloImg} alt="titulo" className="titulo" />
 
       <Card altura="450px">

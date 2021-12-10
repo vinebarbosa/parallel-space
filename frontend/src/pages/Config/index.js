@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { useAuth } from '../../hooks/Authentication'
 
+import { toast, ToastContainer } from 'react-toastify'
+
 import api from '../../services/api';
 import { plugin } from '../../services/plugin'
 
@@ -33,6 +35,16 @@ export default function Config() {
     Logout()
   }
 
+  function showToast(type, message) {
+    switch (type) {
+      case 'sucess':
+        toast.success(message)
+        break
+      default:
+        break
+    }
+  }
+
   useEffect(() => {
     async function getPadsData() {
       const response = await api.get('/buttons')
@@ -60,6 +72,12 @@ export default function Config() {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        theme="colored"
+        style={{ fontSize: '18px' }}
+      />
+
       <div className="parte1-div">
         <div className="cabeca">
           <div className="welcome-mensager">
@@ -101,7 +119,7 @@ export default function Config() {
       <div className="parte2-div">
         {
           !!selectedPad.id
-          ? <Form pad={selectedPad} update={forceUpdate}/>
+          ? <Form pad={selectedPad} update={forceUpdate} showToast={showToast} />
           : <p>Clique em um pad para configurar sua função</p>
         }
       </div>

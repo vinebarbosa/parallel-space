@@ -8,7 +8,7 @@ import api from '../../services/api'
 import { plugin } from '../../services/plugin'
 import { FileInput } from '../InputFile';
 
-export function Form({ pad, update }) {
+export function Form({ pad, update, showToast }) {
   const [ type, setType ] = useState('')
   const [ category, setCategory ] = useState('')
   const [ description, setDescription ] = useState('')
@@ -105,7 +105,7 @@ export function Form({ pad, update }) {
 
       const response = await api.put('button', button)
 
-      if (response.status === 204) alert("Pad atualizado com sucesso!")
+      if (response.status === 204) showToast('sucess', "Pad atualizado com sucesso!")
       update()
     } catch {}
 
