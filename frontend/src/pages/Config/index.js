@@ -40,6 +40,9 @@ export default function Config() {
       case 'sucess':
         toast.success(message)
         break
+      case 'warning':
+        toast.warning(message)
+        break
       default:
         break
     }
