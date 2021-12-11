@@ -69,7 +69,13 @@ export default function Config() {
 
   useEffect(() => {
     async function updatePluginCredentials() {
-      updateLocalAddress()
+      try {
+        await plugin.post('login')
+        updateLocalAddress()
+      } catch {
+        showToast('info',
+        'É necessário que o plugin esteja em execução em sua máquina. Por favor, abra o plugin')
+      }
     }
 
     async function updateLocalAddress() {
