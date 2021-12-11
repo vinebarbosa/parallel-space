@@ -28,7 +28,8 @@ export function AuthProvider({ children }) {
     }
   }
 
-  function Logout() {
+  async function Logout() {
+    await plugin.post('logout')
     localStorage.clear()
     setName('')
   }
