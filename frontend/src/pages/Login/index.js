@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react'
+import React, { useState, createRef, useEffect } from 'react'
 
 import { Link } from 'react-router-dom';
 import { useAuth  } from '../../hooks/Authentication'
@@ -22,6 +22,32 @@ export default function Login() {
   const inputEmail = createRef()
   const inputPassword = createRef()
 
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    async function tryLogin() {
+      if (!isLoading) return
+
+      const validated = await validarDados();
+
+      if (validated) {
+
+        const response = await Login(email, password)
+
+        if (response === 'Usuário não cadastrado') {
+          inputEmail.current.focusOnError()
+          toast.error('Ops... O email informado não está cadastrado :(')
+          setIsLoading(false)
+        } else if (response === 'Senha incorreta') {
+          inputPassword.current.focusOnError()
+          toast.error('Ops... A senha informada está incorreta')
+          setIsLoading(false)
+        }
+      }
+    }
+    tryLogin()
+  }, [isLoading])
+
   async function validarDados() {
     try {
       await yup
@@ -29,10 +55,12 @@ export default function Login() {
         .required(() => {
           inputEmail.current.focusOnError()
           toast.error('Ops... Este campo é obrigatório')
+          setIsLoading(false)
         })
         .email(() => {
           inputEmail.current.focusOnError()
           toast.error('Ops... O formato de email informado é inválido')
+          setIsLoading(false)
         })
         .validate(email);
     } catch {
@@ -45,6 +73,7 @@ export default function Login() {
         .required(() => {
           inputPassword.current.focusOnError()
           toast.error('Ops... Este campo é obrigatório')
+          setIsLoading(false)
         })
         .validate(password);
     } catch {
@@ -56,40 +85,7 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
-
-
-    const validated = await validarDados();
-
-    if (validated) {
-
-      const promisse = Login(email, password).then(() => {}, (response) => {
-        if (response === 'Usuário não cadastrado') {
-          inputEmail.current.focusOnError()
-          return new Promise((resolve, reject) => {
-            reject('Ops... O email informado não está cadastrado :(')
-          })
-        } else if (response === 'Senha incorreta') {
-          inputPassword.current.focusOnError()
-          return new Promise((resolve, reject) => {
-            reject('Ops... A senha informada está incorreta')
-          })
-        }
-      })
-
-      toast.promise(
-        promisse,
-        {
-          pending: 'Por favor, aguarde um momento...',
-          error: {
-            render({ data }){
-              return data
-            }
-          }
-        }
-      )
-    }
-
-
+    setIsLoading(true);
   }
 
   return (
@@ -133,7 +129,7 @@ export default function Login() {
             security="on"
           />
 
-          <SubmitButton>ENTRAR</SubmitButton>
+          <SubmitButton disabled={isLoading} >ENTRAR</SubmitButton>
         </form>
 
         <div className="register-area">

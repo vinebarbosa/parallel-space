@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/Authentication'
 
 import { FiArrowLeft } from 'react-icons/fi';
@@ -19,6 +19,7 @@ export default function Register() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const { Registro } = useAuth()
 
@@ -26,6 +27,30 @@ export default function Register() {
   const inputName = createRef()
   const inputPassword = createRef()
   const inputPassword2 = createRef()
+
+  useEffect(() => {
+    async function tryRegister() {
+      if (!isLoading) return
+
+      const validated = await validarDados();
+
+      if (!validated) return;
+
+      const response = await Registro(email, password, name)
+
+      if (response === 'OK') {
+        toast.success("A criação da sua conta teve êxito. Seja muito bem-vindo à família ❤️")
+        setIsLoading(false);
+      }
+
+      else {
+        toast.error(response)
+        setIsLoading(false);
+      }
+    }
+
+    tryRegister()
+  }, [isLoading])
 
   async function validarDados() {
     // Validando email
@@ -35,10 +60,12 @@ export default function Register() {
         .required(() => {
           inputEmail.current.focusOnError();
           toast.error('Ops... Este campo é obrigatório');
+          setIsLoading(false);
         })
         .email(() => {
           inputEmail.current.focusOnError();
           toast.error('Ops... O formato de email informado é inválido');
+          setIsLoading(false);
         })
         .validate(email);
     } catch {
@@ -52,6 +79,7 @@ export default function Register() {
         .required(() => {
           inputName.current.focusOnError();
           toast.error('Ops... Este campo é obrigatório');
+          setIsLoading(false);
         })
         .validate(name);
     } catch {
@@ -65,11 +93,13 @@ export default function Register() {
         .required(() => {
           inputPassword.current.focusOnError();
           toast.error('Ops... Este campo é obrigatório');
+          setIsLoading(false);
         })
         .validate(password);
       if (confirmpassword !== password) {
         inputPassword2.current.focusOnError();
         toast.error('Ops... As senhas informadas não coincidem');
+        setIsLoading(false);
         return false;
       }
     } catch {
@@ -81,42 +111,7 @@ export default function Register() {
 
   async function handleRegister(e) {
     e.preventDefault();
-    const data = {
-      email,
-      name,
-      password,
-      confirmpassword,
-    };
-
-    const validated = await validarDados();
-
-    if (validated) {
-      const promise = Registro(email, password, name).then(() => {
-        return new Promise((resolve) => {
-          resolve("A criação da sua conta teve êxito. Seja muito bem-vindo à família ❤️")
-        })
-      }, (response) => {
-          inputEmail.current.focusOnError()
-          return new Promise((resolve, reject) => { reject(response) })
-      })
-
-      toast.promise(
-        promise,
-        {
-          pending: 'Por favor, aguarde um momento...',
-          success: {
-            render({data}){
-              return data
-            },
-          },
-          error: {
-            render({data}){
-              return data
-            }
-          }
-        }
-      )
-    }
+    setIsLoading(true);
   }
 
   return (
@@ -195,7 +190,7 @@ export default function Register() {
             security="on"
           />
 
-          <SubmitButton>CADASTRAR</SubmitButton>
+          <SubmitButton disable={isLoading} >CADASTRAR</SubmitButton>
         </form>
       </Card>
 
