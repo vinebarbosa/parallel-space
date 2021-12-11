@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { useAuth } from '../../hooks/Authentication'
 
+import { Skeleton } from '../../components/Skeleton'
+
 import { toast, ToastContainer } from 'react-toastify'
 
 import api from '../../services/api';
@@ -23,7 +25,7 @@ export default function Config() {
   const { Logout, name } = useAuth()
 
   const [selectedPad, setSelectedPad] = useState({})
-  const [pads, setPads] = useState([])
+  const [pads, setPads] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
 
   const [reload, setReload] = useState(false)
 
@@ -43,6 +45,12 @@ export default function Config() {
       case 'warning':
         toast.warning(message)
         break
+      case 'error':
+        toast.error(message)
+        break
+      case 'info':
+        toast.info(message)
+        break
       default:
         break
     }
@@ -61,8 +69,13 @@ export default function Config() {
 
   useEffect(() => {
     async function updatePluginCredentials() {
-      await plugin.post('login')
-      updateLocalAddress()
+      try {
+        await plugin.post('login')
+        updateLocalAddress()
+      } catch {
+        showToast('info',
+        'É necessário que o plugin esteja em execução em sua máquina. Por favor, abra o plugin')
+      }
     }
 
     async function updateLocalAddress() {
@@ -82,7 +95,7 @@ export default function Config() {
       />
 
       <div className="parte1-div">
-        <div className="cabeca">
+        <div className="header">
           <div className="welcome-mensager">
             <p>Bem Vindo(a), {name}!</p>
           </div>
@@ -99,14 +112,21 @@ export default function Config() {
 
 
         <PadsContainer>
-          <Pads>
-            {pads && (
+        <Pads>
+            {pads[0].id !== undefined ? (
               pads.map((pad) =>
                 <Pad
                   key={pad.id}
                   data={pad}
                   changeSelectedPad={setSelectedPad}
                   selectedPad={selectedPad}
+                />
+              )
+            ): (
+              pads.map((pad) =>
+                <Skeleton
+                  key={pad}
+                  data={pad}
                 />
               )
             )}

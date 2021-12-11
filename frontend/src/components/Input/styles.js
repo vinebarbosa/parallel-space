@@ -20,6 +20,17 @@ export const Container = styled.div`
     border: none;
     outline: 0;
 
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      transition: background-color 5000000s ease-in-out 0s;
+    }
+
+    &:-webkit-autofill {
+      -webkit-text-fill-color: white !important;
+    }
+
     &.error {
       border: 2px solid #ef5350;
       padding: 0 48px;

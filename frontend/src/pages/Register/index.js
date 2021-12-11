@@ -34,11 +34,11 @@ export default function Register() {
         .string()
         .required(() => {
           inputEmail.current.focusOnError();
-          toast.error('Este campo é obrigatório');
+          toast.error('Ops... Este campo é obrigatório');
         })
         .email(() => {
           inputEmail.current.focusOnError();
-          toast.error('Formato de email inválido');
+          toast.error('Ops... O formato de email informado é inválido');
         })
         .validate(email);
     } catch {
@@ -51,7 +51,7 @@ export default function Register() {
         .string()
         .required(() => {
           inputName.current.focusOnError();
-          toast.error('Este campo é obrigatório');
+          toast.error('Ops... Este campo é obrigatório');
         })
         .validate(name);
     } catch {
@@ -64,12 +64,12 @@ export default function Register() {
         .string()
         .required(() => {
           inputPassword.current.focusOnError();
-          toast.error('Este campo é obrigatório');
+          toast.error('Ops... Este campo é obrigatório');
         })
         .validate(password);
       if (confirmpassword !== password) {
         inputPassword2.current.focusOnError();
-        toast.error('As senhas não coincidem');
+        toast.error('Ops... As senhas informadas não coincidem');
         return false;
       }
     } catch {
@@ -92,7 +92,9 @@ export default function Register() {
 
     if (validated) {
       const promise = Registro(email, password, name).then(() => {
-        return new Promise((resolve) => { resolve("Usuário cadastrado com sucesso!") })
+        return new Promise((resolve) => {
+          resolve("A criação da sua conta teve êxito. Seja muito bem-vindo à família ❤️")
+        })
       }, (response) => {
           inputEmail.current.focusOnError()
           return new Promise((resolve, reject) => { reject(response) })

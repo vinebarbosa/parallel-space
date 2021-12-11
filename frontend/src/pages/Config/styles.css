@@ -1,4 +1,4 @@
-.cabeca{
+.header {
   display: flex;
   height: 40px;
   width: 100%;
@@ -6,27 +6,32 @@
   align-items: center;
   justify-content: center;
 }
-.welcome-mensager{
+
+:root {
+  --toastify-color-success: #8257E5;
+}
+
+.welcome-mensager {
   position: absolute;
   top: 10px;
   left: 10px;
-
 }
-.welcome-mensager p{
+
+.welcome-mensager p {
   font-size: 18px;
   font-weight: 400;
-
 }
-.logout{
+.logout {
   position: absolute;
   top: 10px;
   right: 10px;
-
 }
+
 .parte1-div {
   height: 70vh;
   width: 100vw;
 }
+
 .parte2-div {
   height:30vh;
   width: 100vw;
@@ -35,6 +40,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .parte2-div p {
   font-size: 18px;
   color: #fff;
@@ -68,5 +74,4 @@
   top: 20vh;
   height: 250px;
   transform: rotate(15deg);
-
 }

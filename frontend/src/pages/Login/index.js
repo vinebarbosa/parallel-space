@@ -28,11 +28,11 @@ export default function Login() {
         .string()
         .required(() => {
           inputEmail.current.focusOnError()
-          toast.error('Este campo é obrigatório')
+          toast.error('Ops... Este campo é obrigatório')
         })
         .email(() => {
           inputEmail.current.focusOnError()
-          toast.error('Formato de email inválido')
+          toast.error('Ops... O formato de email informado é inválido')
         })
         .validate(email);
     } catch {
@@ -44,7 +44,7 @@ export default function Login() {
         .string()
         .required(() => {
           inputPassword.current.focusOnError()
-          toast.error('Este campo é obrigatório')
+          toast.error('Ops... Este campo é obrigatório')
         })
         .validate(password);
     } catch {
@@ -65,10 +65,14 @@ export default function Login() {
       const promisse = Login(email, password).then(() => {}, (response) => {
         if (response === 'Usuário não cadastrado') {
           inputEmail.current.focusOnError()
-          return new Promise((resolve, reject) => { reject(response) })
+          return new Promise((resolve, reject) => {
+            reject('Ops... O email informado não está cadastrado :(')
+          })
         } else if (response === 'Senha incorreta') {
           inputPassword.current.focusOnError()
-          return new Promise((resolve, reject) => { reject(response) })
+          return new Promise((resolve, reject) => {
+            reject('Ops... A senha informada está incorreta')
+          })
         }
       })
 

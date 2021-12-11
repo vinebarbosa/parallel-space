@@ -22,13 +22,17 @@ export function Form({ pad, update, showToast }) {
       if (type === 'obs') {
         try {
           const { data } = await plugin.get('scenes')
-          if (!!data.error) {
-            showToast("warning","Por favor, abra o OBS Studio")
+
+          if (data.error !== undefined) {
             handleTypeChange("")
+            showToast('info',"Para utilizar essas opções, abra o OBS Studio")
           } else {
             setCenas(data)
           }
-        } catch {}
+        } catch {
+          handleTypeChange("")
+          showToast('error',"Falha na conexão. Abra o plugin e tente novamente")
+        }
       }
     }
 
@@ -135,7 +139,7 @@ export function Form({ pad, update, showToast }) {
             onChange={(event) => handleTypeChange(event.target.value)}
           >
             <option value=""></option>
-            <option value="obs">OBS</option>
+            <option value="obs">OBS STUDIO</option>
             <option value="system">SISTEMA</option>
           </select>
         </div>
