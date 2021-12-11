@@ -1,9 +1,17 @@
 import React from 'react'
 
-import { Button } from './styles'
+import { Button, LoadingButton } from './styles'
 
-export function SubmitButton({ children }) {
+export function SubmitButton({ children, disable=false }) {
   return (
-    <Button><p>{children}</p></Button>
+    <>
+      {
+        disable ? (
+          <LoadingButton> <div /></LoadingButton>
+        ) : (
+          <Button><p>{children}</p></Button>
+        )
+      }
+    </>
   )
 }

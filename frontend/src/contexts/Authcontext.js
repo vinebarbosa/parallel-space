@@ -21,32 +21,32 @@ export function AuthProvider({ children }) {
         plugin.defaults.headers.common.Authorization = token
         setName(name)
       }
-    } catch (error) {
-      return new Promise((resolve, reject) => {
-        reject(error.response.data.error)
-      })
+    } catch (e) {
+      return e.response.data.error
     }
   }
 
   async function Logout() {
-    await plugin.post('logout')
     localStorage.clear()
     setName('')
+    try {
+      await plugin.post('logout')
+    } catch{}
   }
 
   async function Registro(email, password, name) {
     try {
       await api.post('user', { email, password, name })
-      return new Promise(resolve => { resolve('OK') })
+      return 'OK'
     } catch (error) {
-      return new Promise((resolve, reject) => { reject(error.response.data.error) })
+      return error.response.data.error
     }
   }
 
   useEffect(() => {
-    async function LoadStoragedData() {
-      const _name = await localStorage.getItem('@ParallelSpace:name')
-      const _token = await localStorage.getItem('@ParallelSpace:token')
+    function LoadStoragedData() {
+      const _name =  localStorage.getItem('@ParallelSpace:name')
+      const _token = localStorage.getItem('@ParallelSpace:token')
 
       if (_token && _name) {
         api.defaults.headers.common.Authorization = _token
