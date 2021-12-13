@@ -129,7 +129,7 @@ export default function Login() {
             security="on"
           />
 
-          <SubmitButton disabled={isLoading} >ENTRAR</SubmitButton>
+          <SubmitButton disable={isLoading} >ENTRAR</SubmitButton>
         </form>
 
         <div className="register-area">
