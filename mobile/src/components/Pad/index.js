@@ -28,16 +28,6 @@ export function Pad({ button }) {
     getPluginAddress()
   }, [])
 
-  useEffect(() => {
-    async function getURL() {
-      try {
-        const { data } = await api.get(`image/${button.id}`)
-        setImageUrl(data.url)
-      } catch {}
-    }
-    getURL()
-  }, [])
-
   async function getScenes() {
     const { data } = await plugin.get('scenes')
     if (data.error !== undefined) return data.error
